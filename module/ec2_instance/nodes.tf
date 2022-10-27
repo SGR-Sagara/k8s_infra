@@ -36,7 +36,7 @@ resource "aws_instance" "euroleague_utility_node" {
   vpc_security_group_ids = var.vpc_security_group_ids
   #security_groups = [local.instance_sec_grp_id]
   key_name = "Euroleague_Dev"
-  user_data = "${file("instance_user_data.sh")}"
+  user_data = "${file("yum_node_setup.sh")}"
   iam_instance_profile = var.role_name
   tags = {
     Name = "Euroleague_utility_node"
