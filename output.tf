@@ -32,7 +32,7 @@ output "public_security_group" {
 output "private_security_group" {
   value = module.main_network.private_security_group
 }
-
+/*
 ## EIP details
 output "eip_allocation_id" {
   value = module.main_network.eip_allocation_id
@@ -93,3 +93,4 @@ output "user_pool_id" {
 output "user_pool_arn" {
   value = module.cognito.pool_arn
 }
+*/

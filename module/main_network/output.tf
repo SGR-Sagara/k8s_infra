@@ -38,7 +38,7 @@ output "private_security_group" {
   value = aws_security_group.private_access_sg.id
 }
 
-
+/*
 ## EIP details
 output "eip_allocation_id" {
   value = aws_eip.nat_public_ip.allocation_id
@@ -48,3 +48,4 @@ output "aws_nat_gateway" {
   value = aws_nat_gateway.gateway_for_private_sn.id
 }
 
+*/
