@@ -35,10 +35,10 @@ resource "aws_instance" "euroleague_utility_node" {
   #subnet_id = (tolist(data.aws_subnet_ids.public_subnets.ids))[0]
   vpc_security_group_ids = var.vpc_security_group_ids
   #security_groups = [local.instance_sec_grp_id]
-  key_name = "Euroleague_Dev"
+  key_name = "NewKey"
   #user_data = "${file("yum_node_setup.sh")}"
-  iam_instance_profile = var.role_name
+  #iam_instance_profile = var.role_name
   tags = {
-    Name = "Euroleague_utility_node"
+    Name = "K8S_MasterNode"
   }
 }
