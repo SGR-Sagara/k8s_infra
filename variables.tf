@@ -83,6 +83,7 @@ variable "ami_id" {
 # 2. Number of EC2s
 variable "ec2_node_cnt" {
   type = number
+  default = 1
 }
 # 3. SSH Key Name
 variable "ssh_key_name" {
@@ -93,6 +94,7 @@ variable "ssh_key_name" {
 # 4. Instance type
 variable "instance_type" {
   type = string
+  default = "t2.micro"
 }
 
 # 5. Role Name
