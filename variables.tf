@@ -78,7 +78,7 @@ variable "public_access_sg_ingress_rules" {
 # 1. EC2 AMI
 variable "ami_id" {
   type = string
-  default = "ami-009281b3c72ff5c10"
+  default = "ami-0e6329e222e662a52"
 }
 # 2. Number of EC2s
 variable "ec2_node_cnt" {
