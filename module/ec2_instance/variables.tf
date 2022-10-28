@@ -31,7 +31,7 @@ variable "vpc_id" {
 }
 # 7. Userdata file
 variable "user_data_file" {
-  type = string
+  type = file
   default = "yum_node_setup.sh"
 }
 ## EC2 vpc_security_group_ids
