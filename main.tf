@@ -1,10 +1,28 @@
-## Calling the relevant modules for execution
-/*
-# 0. Call utility for basic set up
-module "basic_utility" {
-  source = "./module/basic_utility"
+## Add the provide section.
+terraform {
+  required_providers {
+    aws = {
+      source = "hashicorp/aws"
+      version = "3.65.0"  ## was 3.64.2
+    }
+  }
 }
-*/
+
+terraform {
+  backend "remote" {
+    organization = "home_org_sagara"
+
+    workspaces {
+      name = "k8s_infra"
+    }
+
+  }
+}
+
+provider "aws" {
+  region = "ap-south-1"
+}
+
 
 # 1. Call the main network module
 module "main_network" {
