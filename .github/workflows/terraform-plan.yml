@@ -15,9 +15,13 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
-  build:
+  terraform:
+    name: "Terraform"
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
+    env:
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -34,9 +38,13 @@ jobs:
           echo Add other actions to build,
           echo test, and deploy your project.
           
-      # Install terraform for ubuntu runner
-      - name: Install terrafrom
-        run: |
-          sudo apt-get update,
-          sudo apt-get install terraform,
-          echo test, and deploy your project.
+      # Init terraform for ubuntu runner
+      - name: Terraform  Init
+        id: init
+        run: terraform init
+
+      # Terraform Plan
+      - name: Terraform  Plan
+        id: plan
+        if: github.event_name == "push"
+        run: terraform plan -no-color
