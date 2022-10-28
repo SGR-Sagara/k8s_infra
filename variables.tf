@@ -109,7 +109,7 @@ variable "vpc_security_group_ids" {
 }
 # 7. Userdata file
 variable "user_data_file" {
-  type = file
+  type = string
   default = "yum_node_setup.sh"
 }
 ######################### Database Creation related Variables

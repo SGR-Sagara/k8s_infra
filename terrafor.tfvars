@@ -47,7 +47,7 @@ ec2_node_cnt = 1
 ssh_key_name = "Project_DevTest"
 instance_type = "t2.micro"
 role_name = "EC2_Role"
-user_data_file = "${file("yum_node_setup.sh")}"
+user_data_file = "yum_node_setup.sh"
 ### ------------- Database related Variables
 db_identifier = "eurolegue-db"
 db_backup_retention_period = 7

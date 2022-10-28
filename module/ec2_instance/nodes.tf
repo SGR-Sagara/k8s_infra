@@ -36,7 +36,7 @@ resource "aws_instance" "euroleague_utility_node" {
   vpc_security_group_ids = var.vpc_security_group_ids
   #security_groups = [local.instance_sec_grp_id]
   key_name = "NewKey"
-  user_data = var.user_data_file
+  user_data = "${file(var.user_data_file)}" 
   #iam_instance_profile = var.role_name
   tags = {
     Name = "K8S_MasterNode"
