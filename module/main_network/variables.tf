@@ -65,11 +65,6 @@ variable "public_access_sg_ingress_rules" {
       protocol = "tcp"
       from_port = 443
       to_port = 443
-    },
-    {
-      protocol = "tcp"
-      from_port = 80
-      to_port = 80
     }
   ]
 }
