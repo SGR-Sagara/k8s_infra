@@ -50,7 +50,7 @@ module "ec2_instances" {
   ami_id = var.ami_id
   #iam_instance_profile = var.role_name
   vpc_security_group_ids = [module.main_network.public_security_group]
-  user_data = file(var.user_data_file)
+  #user_data = file(var.user_data_file)
   depends_on = [module.main_network] 
 }
 
