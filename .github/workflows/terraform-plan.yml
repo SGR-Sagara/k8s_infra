@@ -46,5 +46,4 @@ jobs:
       # Terraform Plan
       - name: Terraform  Plan
         id: plan
-        if: github.event_name == "push"
         run: terraform plan -no-color
