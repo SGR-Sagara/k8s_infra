@@ -11,11 +11,10 @@ terraform {
 terraform {
   backend "remote" {
     organization = "home_org_sagara"
-
+    hostname = "app.terraform.io"
     workspaces {
       name = "k8s_infra"
     }
-
   }
 }
 
