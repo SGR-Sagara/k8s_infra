@@ -53,10 +53,6 @@ on:
 
 env:
   AWS_REGION : "ap-south-1"
-  if: github.ref == 'refs/heads/dev'
-    AWS_STS_ROLE : "arn:aws:iam::201369566049:role/github_actions_role"
-  if: github.ref == 'refs/heads/master'
-    AWS_STS_ROLE : "arn:aws:iam::201369566049:role/github_actions_role"
 
 permissions:
   id-token: write
@@ -89,7 +85,7 @@ jobs:
     - name: Configure AWS Credentials
       uses: aws-actions/configure-aws-credentials@v1
       with:
-        role-to-assume: ${{env.AWS_STS_ROLE}}
+        role-to-assume: arn:aws:iam::201369566049:role/github_actions_role
         role-session-name: k8s_terra_session
         aws-region: ${{env.AWS_REGION}}
 
