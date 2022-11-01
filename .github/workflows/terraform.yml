@@ -55,13 +55,14 @@ env:
   AWS_REGION : "ap-south-1"
 
 permissions:
-  contents: write
+  id-token: write
+  contents: read
 
 jobs:
   terraform:
     name: 'Terraform'
     runs-on: ubuntu-latest
-    environment: dev
+    #environment: dev
 
     # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
     defaults:
