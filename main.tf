@@ -8,6 +8,17 @@ terraform {
   }
 }
 
+/*
+terraform {
+  backend "s3" {
+    bucket = "sgr-it-lab-tf-states"
+    key    = "k8s.tfstate"
+    region = "ap-south-1"
+  }
+}
+*/
+
+## Terraform Backend
 terraform {
   backend "remote" {
     organization = "home_org_sagara"
