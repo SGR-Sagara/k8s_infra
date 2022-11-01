@@ -8,7 +8,7 @@ terraform {
   }
 }
 
-/*
+
 terraform {
   backend "s3" {
     bucket = "sgr-it-lab-tf-states"
@@ -16,8 +16,9 @@ terraform {
     region = "ap-south-1"
   }
 }
-*/
 
+
+/*
 ## Terraform Backend
 terraform {
   backend "remote" {
@@ -28,6 +29,7 @@ terraform {
     }
   }
 }
+*/
 
 provider "aws" {
   region = "ap-south-1"
