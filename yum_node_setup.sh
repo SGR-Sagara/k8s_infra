@@ -32,3 +32,4 @@ sudo chmod +x /usr/local/bin/docker-compose
 git config --global user.name "amsagara"
 git config --global user.email amsagara@gmail.com
 
+## Install 

@@ -8,16 +8,28 @@ terraform {
   }
 }
 
+
+terraform {
+  backend "s3" {
+    bucket = "sgr-it-lab-tf-states"
+    key    = "k8s.tfstate"
+    region = "ap-south-1"
+  }
+}
+
+
+/*
+## Terraform Backend
 terraform {
   backend "remote" {
     organization = "home_org_sagara"
-
+    hostname = "app.terraform.io"
     workspaces {
       name = "k8s_infra"
     }
-
   }
 }
+*/
 
 provider "aws" {
   region = "ap-south-1"
