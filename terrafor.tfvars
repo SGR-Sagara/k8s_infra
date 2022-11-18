@@ -43,7 +43,7 @@ public_access_sg_ingress_rules = [
 
 ### ----------- EC2 nodes
 ami_id = "ami-0e6329e222e662a52"
-ec2_node_cnt = 2
+ec2_node_cnt = 1
 ssh_key_name = "Project_DevTest"
 instance_type = "t2.micro"
 role_name = "EC2_Role"
