@@ -27,17 +27,11 @@ variable "private_rt" {
 }
 
 # 1.4. Create 3 Public Subnets
-variable "public_sn_count" {
-  type = number
-}
 variable "public_subnets" {
   type = list(string)
 }
 
 # 1.5. Create 3 Private Subnets
-variable "private_sn_count" {
-  type = number
-}
 variable "private_subnets" {
   type = list(string)
 }

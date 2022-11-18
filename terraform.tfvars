@@ -84,6 +84,8 @@ git config --global user.email amsagara@gmail.com
 
 ## Install 
 EOF
+
+/*
 ### ------------- Database related Variables
 db_identifier = "eurolegue-db"
 db_backup_retention_period = 7
@@ -122,3 +124,5 @@ d_prefix = "Project_123456789"
 ################# DB Proxy with Proxy module ###############
 kms_key_id = "44e856ea-5258-47a0-80f9-44c4ec486cf4"
 env_id = "Dev"
+
+*/
