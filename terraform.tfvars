@@ -47,7 +47,7 @@ ec2_node_cnt = 1
 ssh_key_name = "Project_DevTest"
 instance_type = "t2.micro"
 role_name = "EC2_Role"
-user_data_file = << EOF
+user_data_file = <<EOF
 #!/bin/bash
 # Install Docker
 sudo yum update
