@@ -1,12 +1,12 @@
 # 1. Create a VPC
-vpc_name = "Project_VPC"
+vpc_name = "K8S_VPC"
 vpc_cidr = "10.0.0.0/16"
 public_source_cidr = ["0.0.0.0/0"]
 public_source_cidr_v6 = ["::/0"]
 #azs = ["ap-south-1a","ap-south-1b","ap-south-1c"]
 
 # 2. Create a Internet Gateway
-ig_name = "Project_IG"
+ig_name = "K8S_IG"
 
 # 1.3. Create 2 Route tables
 public_rt = "PUBLIC_RT"
