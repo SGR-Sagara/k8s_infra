@@ -53,7 +53,7 @@ module "main_network" {
 }
 
 
-
+/*
 # Create EC2 utility node
 module "ec2_instances" {
   source = "./module/ec2_instance"
@@ -67,3 +67,4 @@ module "ec2_instances" {
   depends_on = [module.main_network] 
 }
 
+*/
