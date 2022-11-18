@@ -1,7 +1,6 @@
 # 1.1. Create a VPC
 variable "vpc_name" {
   type = string
-  default = "besu_vpc"
 }
 variable "vpc_cidr" {
   type = string
@@ -20,7 +19,6 @@ variable "public_source_cidr_v6" {
 # 2. Create a Internet Gateway
 variable "ig_name" {
   type = string
-  default = "Besu_IG"
 }
 
 # 1.3. Create 2 Route tables
@@ -33,21 +31,13 @@ variable "private_rt" {
   default = "Private_RT"
 }
 
-# 1.4. Create 3 Public Subnets
-variable "public_sn_count" {
-  type = number
-  default = 1
-}
+# 1.4. Create Public Subnets
 variable "public_subnets" {
   type = list(string)
   default = ["10.0.1.0/24"]
 }
 
-# 1.5. Create 3 Private Subnets
-variable "private_sn_count" {
-  type = number
-  default = 1
-}
+# 1.5. Create Private Subnets
 variable "private_subnets" {
   type = list(string)
   default = ["10.0.2.0/24"]
