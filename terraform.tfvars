@@ -47,7 +47,6 @@ ec2_node_cnt = 1
 ssh_key_name = "newkey"
 instance_type = "t2.micro"
 role_name = "admin"
-worker_names = ["Worker_1", "Worker_2"]
 user_data_file = <<EOF
 #!/bin/bash
 # Install Docker

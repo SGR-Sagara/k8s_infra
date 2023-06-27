@@ -39,9 +39,3 @@ variable "vpc_security_group_ids" {
     type = list(string)
     default = [ "value" ]
 }
-
-## EC2 worker name-list
-variable "worker_names" {
-    type = list(string)
-    default = [ "value" ]
-}
