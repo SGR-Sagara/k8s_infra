@@ -75,4 +75,10 @@ variable "role_name" {
 variable "user_data_file" {
   type = string
 }
+# 8. EC2 worker name-list
+variable "worker_names" {
+    type = list(string)
+    default = [ "value" ]
+}
+
 ######################### Database Creation related Variables
