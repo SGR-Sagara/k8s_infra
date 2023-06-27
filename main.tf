@@ -60,18 +60,18 @@ module "main_network" {
 }
 
 
-/*
+
 # Create EC2 utility node
 module "ec2_instances" {
   source = "./module/ec2_instance"
   vpc_id = module.main_network.vpc_id
-  ec2_node_cnt = var.ec2_node_cnt
+  #ec2_node_cnt = var.ec2_node_cnt
   instance_type = var.instance_type
   ami_id = var.ami_id
+  worker_names = var.worker_names
+  ssh_key_name = var.ssh_key_name
   #iam_instance_profile = var.role_name
-  vpc_security_group_ids = [module.main_network.public_security_group]
+  #vpc_security_group_ids = [module.main_network.public_security_group]
   #user_data = file(var.user_data_file)
   depends_on = [module.main_network] 
 }
-
-*/

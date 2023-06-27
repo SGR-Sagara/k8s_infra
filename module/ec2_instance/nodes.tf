@@ -10,7 +10,7 @@ data "aws_subnet_ids" "public_subnets" {
 }
 
 ## Get Public  Security Group
-data "aws_security_group" "public_sg" {
+data "aws_security_groups" "public_sg" {
   vpc_id = var.vpc_id
   tags = {
     Name = "PUBLIC_SG"
@@ -31,11 +31,11 @@ locals {
 resource "aws_instance" "k8s_master_node" {
   ami = var.ami_id
   instance_type = var.instance_type
-  subnet_id = local.instance_subnet_id
+  subnet_id = data.aws_subnet_ids.public_subnets[0]
   #subnet_id = (tolist(data.aws_subnet_ids.public_subnets.ids))[0]
-  vpc_security_group_ids = var.vpc_security_group_ids
+  vpc_security_group_ids = data.aws_security_groups.public_sg.ids[0]
   #security_groups = [local.instance_sec_grp_id]
-  key_name = "NewKey"
+  key_name = var.ssh_key_name
   user_data = "${file(var.user_data_file)}" 
   #iam_instance_profile = var.role_name
   tags = {
@@ -48,11 +48,11 @@ resource "aws_instance" "k8s_worker_node" {
   count = length(var.worker_names)
     ami = var.ami_id
     instance_type = var.instance_type
-    subnet_id = local.instance_subnet_id
+    subnet_id = data.aws_subnet_ids.public_subnets[0]
     #subnet_id = (tolist(data.aws_subnet_ids.public_subnets.ids))[0]
-    vpc_security_group_ids = var.vpc_security_group_ids
+    vpc_security_group_ids = data.aws_security_groups.public_sg.ids[0]
     #security_groups = [local.instance_sec_grp_id]
-    key_name = "NewKey"
+    key_name = var.ssh_key_name
     user_data = "${file(var.user_data_file)}" 
     #iam_instance_profile = var.role_name
     tags = {
