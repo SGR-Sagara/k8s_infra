@@ -2,7 +2,7 @@
 
 
 ## Get Public  SubnetList
-data "aws_subnet_ids" "public_subnets" {
+data "aws_subnets" "public_subnets" {
   vpc_id = var.vpc_id
   tags = {
     Access = "PUBLIC"
@@ -11,9 +11,9 @@ data "aws_subnet_ids" "public_subnets" {
 
 ## Get Public  Security Group
 data "aws_security_groups" "public_sg" {
-  vpc_id = var.vpc_id
-  tags = {
-    Name = "PUBLIC_SG"
+  filter {
+    name = "Name"
+    values = [ "PUBLIC_SG" ]
   }
 }
 
@@ -32,7 +32,7 @@ locals {
 resource "aws_instance" "k8s_master_node" {
   ami = var.ami_id
   instance_type = var.instance_type
-  subnet_id = data.aws_subnet_ids.public_subnets[0]
+  subnet_id = data.aws_subnets.public_subnets.ids[0]
   #subnet_id = (tolist(data.aws_subnet_ids.public_subnets.ids))[0]
   vpc_security_group_ids = data.aws_security_groups.public_sg.ids[0]
   #security_groups = [local.instance_sec_grp_id]
@@ -49,7 +49,7 @@ resource "aws_instance" "k8s_worker_node" {
   count = length(local.worker_names)
     ami = var.ami_id
     instance_type = var.instance_type
-    subnet_id = data.aws_subnet_ids.public_subnets[0]
+    subnet_id = data.aws_subnets.public_subnets.ids[0]
     #subnet_id = (tolist(data.aws_subnet_ids.public_subnets.ids))[0]
     vpc_security_group_ids = data.aws_security_groups.public_sg.ids[0]
     #security_groups = [local.instance_sec_grp_id]
