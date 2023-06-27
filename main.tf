@@ -51,7 +51,6 @@ module "main_network" {
   public_source_cidr = var.public_source_cidr
   public_source_cidr_v6 = var.public_source_cidr_v6
   ig_name = var.ig_name
-  worker_names = var.worker_names
   public_subnets = var.public_subnets
   private_subnets = var.private_subnets
   public_access_sg_ingress_rules = var.public_access_sg_ingress_rules
@@ -68,7 +67,6 @@ module "ec2_instances" {
   #ec2_node_cnt = var.ec2_node_cnt
   instance_type = var.instance_type
   ami_id = var.ami_id
-  worker_names = var.worker_names
   ssh_key_name = var.ssh_key_name
   #iam_instance_profile = var.role_name
   #vpc_security_group_ids = [module.main_network.public_security_group]
