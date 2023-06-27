@@ -10,9 +10,8 @@ data "aws_subnets" "public_subnets" {
 
 ## Get Public  Security Group
 data "aws_security_groups" "public_sg" {
-  filter {
-    name = "Name"
-    values = [ "PUBLIC_SG" ]
+    tags = {
+    Name = "PUBLIC_SG"
   }
 }
 
