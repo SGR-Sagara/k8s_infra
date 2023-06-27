@@ -3,7 +3,6 @@
 
 ## Get Public  SubnetList
 data "aws_subnets" "public_subnets" {
-  vpc_id = var.vpc_id
   tags = {
     Access = "PUBLIC"
   }
@@ -20,8 +19,8 @@ data "aws_security_groups" "public_sg" {
 ## Pick single subnet
 locals {
   ## Subnet
-  subnet_ids_list = tolist(data.aws_subnet_ids.public_subnets.ids) 
-  instance_subnet_id = local.subnet_ids_list[0]
+  #subnet_ids_list = tolist(data.aws_subnet_ids.public_subnets.ids) 
+  #instance_subnet_id = local.subnet_ids_list[0]
   worker_names = ["Worker_1", "Worker_2"]
   ## Security Group
   #security_groups = tolist(var.vpc_security_group_ids)
