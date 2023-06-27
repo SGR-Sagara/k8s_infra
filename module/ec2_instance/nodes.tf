@@ -27,6 +27,52 @@ locals {
   #instance_sec_grp_id = local.security_groups[0]
 }
 
+## EC2 Role
+# Create IAM Role
+resource "aws_iam_role" "k8s_ec2_role" {
+  name = "CodeBuildRoleForECS"
+
+  assume_role_policy = <<EOF
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Principal": {
+                "Service": "ec2.amazonaws.com"
+            },
+            "Action": "sts:AssumeRole"
+        }
+    ]
+}
+EOF
+}
+
+## Creating policy for k8s_ec2_role
+resource "aws_iam_role_policy" "k8s_ec2_role_policy" {
+  name = aws_iam_role.k8s_ec2_role.name
+  role = aws_iam_role.k8s_ec2_role.id
+
+  # Terraform's "jsonencode" function converts a
+  # Terraform expression result to valid JSON syntax.
+  policy = jsonencode({
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": "*",
+            "Resource": "*"
+        }
+    ]
+})
+}
+
+## Instance Profile
+resource "aws_iam_instance_profile" "ec2_profile" {
+  name = "ec2_profile"
+  role = aws_iam_role.k8s_ec2_role.name
+}
+
 # 1. Create EC2 MAster
 resource "aws_instance" "k8s_master_node" {
   ami = var.ami_id
@@ -37,6 +83,8 @@ resource "aws_instance" "k8s_master_node" {
   #security_groups = [local.instance_sec_grp_id]
   key_name = var.ssh_key_name
   user_data = "${file(var.user_data_file)}" 
+  associate_public_ip_address = true
+  iam_instance_profile = aws_iam_instance_profile.ec2_profile.name
   #iam_instance_profile = var.role_name
   tags = {
     Name = "K8S_Master_Node"
@@ -54,6 +102,8 @@ resource "aws_instance" "k8s_worker_node" {
     #security_groups = [local.instance_sec_grp_id]
     key_name = var.ssh_key_name
     user_data = "${file(var.user_data_file)}" 
+    associate_public_ip_address = true
+    iam_instance_profile = aws_iam_instance_profile.ec2_profile.name
     #iam_instance_profile = var.role_name
     tags = {
       Name = "K8S_Worker_Node_${count.index}"
