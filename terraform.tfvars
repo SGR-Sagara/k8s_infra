@@ -42,11 +42,12 @@ public_access_sg_ingress_rules = [
   ]
 
 ### ----------- EC2 nodes
-ami_id = "ami-0e6329e222e662a52"
+ami_id = "ami-0f5ee92e2d63afc18"
 ec2_node_cnt = 1
-ssh_key_name = "Project_DevTest"
+ssh_key_name = "newkey"
 instance_type = "t2.micro"
-role_name = "EC2_Role"
+role_name = "admin"
+worker_names = ["Worker_1", "Worker_2"]
 user_data_file = <<EOF
 #!/bin/bash
 # Install Docker

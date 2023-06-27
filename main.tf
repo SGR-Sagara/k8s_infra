@@ -3,12 +3,19 @@ terraform {
   required_providers {
     aws = {
       source = "hashicorp/aws"
-      version = "4.40.0"  ## was 3.65.0
+      version = "5.50.0"  ## was 4.40.0
     }
   }
 }
 
+terraform {
+  backend "local" {
+    path = "terraform.tfstate"
+  }
+}
 
+
+/*
 terraform {
   backend "s3" {
     bucket = "sgr-it-lab-tf-states"
@@ -16,7 +23,7 @@ terraform {
     region = "ap-south-1"
   }
 }
-
+*/
 
 /*
 ## Terraform Backend
@@ -44,7 +51,7 @@ module "main_network" {
   public_source_cidr = var.public_source_cidr
   public_source_cidr_v6 = var.public_source_cidr_v6
   ig_name = var.ig_name
-
+  worker_names = var.worker_names
   public_subnets = var.public_subnets
   private_subnets = var.private_subnets
   public_access_sg_ingress_rules = var.public_access_sg_ingress_rules

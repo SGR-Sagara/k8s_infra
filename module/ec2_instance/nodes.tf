@@ -27,8 +27,8 @@ locals {
   #instance_sec_grp_id = local.security_groups[0]
 }
 
-# 1. Create EC2s
-resource "aws_instance" "euroleague_utility_node" {
+# 1. Create EC2 MAster
+resource "aws_instance" "k8s_master_node" {
   ami = var.ami_id
   instance_type = var.instance_type
   subnet_id = local.instance_subnet_id
@@ -39,6 +39,25 @@ resource "aws_instance" "euroleague_utility_node" {
   user_data = "${file(var.user_data_file)}" 
   #iam_instance_profile = var.role_name
   tags = {
-    Name = "K8S_MasterNode"
+    Name = "K8S_Master_Node"
   }
 }
+
+# 2. Create EC2 Worker
+resource "aws_instance" "k8s_worker_node" {
+  count = length(var.worker_names)
+    ami = var.ami_id
+    instance_type = var.instance_type
+    subnet_id = local.instance_subnet_id
+    #subnet_id = (tolist(data.aws_subnet_ids.public_subnets.ids))[0]
+    vpc_security_group_ids = var.vpc_security_group_ids
+    #security_groups = [local.instance_sec_grp_id]
+    key_name = "NewKey"
+    user_data = "${file(var.user_data_file)}" 
+    #iam_instance_profile = var.role_name
+    tags = {
+      Name = "K8S_Worker_Node_${count.index}"
+      Type = var.worker_names[count.index]
+    }
+}
+
