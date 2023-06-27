@@ -31,9 +31,9 @@ locals {
 resource "aws_instance" "k8s_master_node" {
   ami = var.ami_id
   instance_type = var.instance_type
-  subnet_id = data.aws_subnets.public_subnets.ids[0]
+  subnet_id = "${data.aws_subnets.public_subnets.ids[0]}"
   #subnet_id = (tolist(data.aws_subnet_ids.public_subnets.ids))[0]
-  vpc_security_group_ids = data.aws_security_groups.public_sg.ids[0]
+  vpc_security_group_ids = ["${data.aws_security_groups.public_sg.ids[0]}"]
   #security_groups = [local.instance_sec_grp_id]
   key_name = var.ssh_key_name
   user_data = "${file(var.user_data_file)}" 
@@ -48,9 +48,9 @@ resource "aws_instance" "k8s_worker_node" {
   count = length(local.worker_names)
     ami = var.ami_id
     instance_type = var.instance_type
-    subnet_id = data.aws_subnets.public_subnets.ids[0]
+    subnet_id = "${data.aws_subnets.public_subnets.ids[0]}"
     #subnet_id = (tolist(data.aws_subnet_ids.public_subnets.ids))[0]
-    vpc_security_group_ids = data.aws_security_groups.public_sg.ids[0]
+    vpc_security_group_ids = ["${data.aws_security_groups.public_sg.ids[0]}"]
     #security_groups = [local.instance_sec_grp_id]
     key_name = var.ssh_key_name
     user_data = "${file(var.user_data_file)}" 
