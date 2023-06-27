@@ -57,7 +57,6 @@ resource "aws_instance" "k8s_worker_node" {
     #iam_instance_profile = var.role_name
     tags = {
       Name = "K8S_Worker_Node_${count.index}"
-      Type = var.worker_names[count.index]
     }
 }
 
