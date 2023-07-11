@@ -76,7 +76,7 @@ resource "aws_iam_instance_profile" "ec2_profile" {
 resource "aws_instance" "k8s_master_node" {
   ami = var.ami_id
   instance_type = var.instance_type
-  subnet_id = "${data.aws_subnets.public_subnets.ids[1]}"
+  subnet_id = "${data.aws_subnets.public_subnets.ids[0]}"
   #subnet_id = (tolist(data.aws_subnet_ids.public_subnets.ids))[0]
   vpc_security_group_ids = ["${data.aws_security_groups.public_sg.ids[0]}"]
   #security_groups = [local.instance_sec_grp_id]
