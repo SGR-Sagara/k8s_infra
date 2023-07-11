@@ -89,7 +89,7 @@ resource "aws_instance" "k8s_master_node" {
     Name = "K8S_Master_Node"
   }
 }
-
+/*
 # 2. Create EC2 Worker
 resource "aws_instance" "k8s_worker_node" {
   count = length(local.worker_names)
@@ -109,3 +109,4 @@ resource "aws_instance" "k8s_worker_node" {
     }
 }
 
+*/
