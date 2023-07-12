@@ -20,7 +20,7 @@ locals {
   ## Subnet
   #subnet_ids_list = tolist(data.aws_subnet_ids.public_subnets.ids) 
   #instance_subnet_id = local.subnet_ids_list[0]
-  worker_names = ["Worker_1", "Worker_2"]
+  worker_names = ["Worker_1","Worker_2"]
   ## Security Group
   #security_groups = tolist(var.vpc_security_group_ids)
   #instance_sec_grp_id = local.security_groups[0]
