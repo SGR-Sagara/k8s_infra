@@ -21,6 +21,8 @@ locals {
   #subnet_ids_list = tolist(data.aws_subnet_ids.public_subnets.ids) 
   #instance_subnet_id = local.subnet_ids_list[0]
   worker_names = ["Worker_1","Worker_2"]
+  master = "t2.medium"
+  worker = "t2.micro"
   ## Security Group
   #security_groups = tolist(var.vpc_security_group_ids)
   #instance_sec_grp_id = local.security_groups[0]
@@ -75,7 +77,7 @@ resource "aws_iam_instance_profile" "ec2_profile" {
 # 1. Create EC2 MAster
 resource "aws_instance" "k8s_master_node" {
   ami = var.ami_id
-  instance_type = var.instance_type
+  instance_type = local.master
   subnet_id = "${data.aws_subnets.public_subnets.ids[0]}"
   #subnet_id = (tolist(data.aws_subnet_ids.public_subnets.ids))[0]
   vpc_security_group_ids = ["${data.aws_security_groups.public_sg.ids[0]}"]
@@ -94,7 +96,7 @@ resource "aws_instance" "k8s_master_node" {
 resource "aws_instance" "k8s_worker_node" {
   count = length(local.worker_names)
     ami = var.ami_id
-    instance_type = var.instance_type
+    instance_type = local.worker
     subnet_id = "${data.aws_subnets.public_subnets.ids[0]}"
     #subnet_id = (tolist(data.aws_subnet_ids.public_subnets.ids))[0]
     vpc_security_group_ids = ["${data.aws_security_groups.public_sg.ids[0]}"]
