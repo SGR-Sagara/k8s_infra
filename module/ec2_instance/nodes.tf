@@ -80,7 +80,7 @@ resource "aws_instance" "k8s_master_node" {
   count = length(local.master)
     ami = var.ami_id
     instance_type = local.master
-    subnet_id = "${data.aws_subnets.public_subnets.ids[0]}"
+    subnet_id = "${data.aws_subnets.public_subnets.ids[1]}"
     #subnet_id = (tolist(data.aws_subnet_ids.public_subnets.ids))[0]
     vpc_security_group_ids = ["${data.aws_security_groups.public_sg.ids[0]}"]
     #security_groups = [local.instance_sec_grp_id]
@@ -92,6 +92,19 @@ resource "aws_instance" "k8s_master_node" {
     tags = {
       Name = "K8S_Master_Node"
     }
+    provisioner "remote-exec" {
+      inline = [ "sudo hostname set-hostname ${local.master[0]}" ]
+      connection {
+        host = aws_instance.k8s_master_node.publicDns
+        type = "ssh"
+        user = "ubuntu"
+        private_key = "s3://sagara-test-b1/newkey.pem"
+      }
+    }
+    provisioner "local-exec" {
+      command = "echo ${aws_instance.k8s_master_node.publicDns} >> inventory"
+      
+    }
 }
 
 # 2. Create EC2 Worker
@@ -99,7 +112,7 @@ resource "aws_instance" "k8s_worker_node" {
   count = length(local.worker_names)
     ami = var.ami_id
     instance_type = local.worker
-    subnet_id = "${data.aws_subnets.public_subnets.ids[0]}"
+    subnet_id = "${data.aws_subnets.public_subnets.ids[1]}"
     #subnet_id = (tolist(data.aws_subnet_ids.public_subnets.ids))[0]
     vpc_security_group_ids = ["${data.aws_security_groups.public_sg.ids[0]}"]
     #security_groups = [local.instance_sec_grp_id]
