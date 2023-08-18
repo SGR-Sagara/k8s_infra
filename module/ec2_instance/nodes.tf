@@ -93,7 +93,7 @@ resource "aws_instance" "k8s_master_node" {
       Name = "K8S_Master_Node"
     }
     provisioner "remote-exec" {
-      inline = [ "sudo hostname set-hostname ${local.master[0]}" ]
+      inline = [ "sudo hostname set-hostname ${local.master_names[0]}" ]
       connection {
         host = aws_instance.k8s_master_node.publicDns
         type = "ssh"
