@@ -1,7 +1,7 @@
 # 1. Create a VPC
-vpc_name = "K8S_VPC"
-vpc_cidr = "10.0.0.0/16"
-public_source_cidr = ["0.0.0.0/0"]
+vpc_name              = "K8S_VPC"
+vpc_cidr              = "10.0.0.0/16"
+public_source_cidr    = ["0.0.0.0/0"]
 public_source_cidr_v6 = ["::/0"]
 #azs = ["ap-south-1a","ap-south-1b","ap-south-1c"]
 
@@ -9,29 +9,29 @@ public_source_cidr_v6 = ["::/0"]
 ig_name = "K8S_IG"
 
 # 1.3. Create 2 Route tables
-public_rt = "PUBLIC_RT"
+public_rt  = "PUBLIC_RT"
 private_rt = "PRIVATE_RT"
 
 # 1.4. Create 3 Public Subnets
-public_subnets = ["10.0.1.0/24","10.0.2.0/24","10.0.3.0/24"]
+public_subnets = ["10.0.1.0/24", "10.0.2.0/24", "10.0.3.0/24"]
 # 1.5. Create 3 Private Subnets
-private_subnets = ["10.0.5.0/24","10.0.6.0/24","10.0.7.0/24"]
+private_subnets = ["10.0.5.0/24", "10.0.6.0/24", "10.0.7.0/24"]
 
 # 1.6. Create Public access Security Group
 public_access_sg_ingress_rules = [
-    {
-      protocol = "-1"
-      from_port = 0
-      to_port = 0
-    }
-  ]
+  {
+    protocol  = "-1"
+    from_port = 0
+    to_port   = 0
+  }
+]
 
 ### ----------- EC2 nodes
-ami_id = "ami-0f5ee92e2d63afc18"
-ec2_node_cnt = 1
-ssh_key_name = "newkey"
-instance_type = "t2.micro"
-role_name = "admin"
+ami_id         = "ami-0f5ee92e2d63afc18"
+ec2_node_cnt   = 1
+ssh_key_name   = "newkey"
+instance_type  = "t2.micro"
+role_name      = "admin"
 user_data_file = <<UDT
 #!/bin/bash
 ### K8S cluster nodes

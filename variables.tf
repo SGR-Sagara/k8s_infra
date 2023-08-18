@@ -40,8 +40,8 @@ variable "private_subnets" {
 variable "public_access_sg_ingress_rules" {
   type = list(object({
     from_port = number
-    to_port = number
-    protocol = string
+    to_port   = number
+    protocol  = string
   }))
   default = [
 
