@@ -93,17 +93,9 @@ resource "aws_instance" "k8s_master_node" {
       Name = "K8S_Master_Node"
     }
     provisioner "remote-exec" {
-      inline = [ "sudo hostname set-hostname ${local.master_names[0]}" ]
-      connection {
-        host = element(aws_instance.k8s_master_node.publicDns, count.index)
-        type = "ssh"
-        user = "ubuntu"
-        private_key = "s3://sagara-test-b1/newkey.pem"
-      }
-    }
-    provisioner "local-exec" {
-      command = "echo ${aws_instance.k8s_master_node.publicDns} >> inventory"
-      
+      inline = [ 
+        "sudo ifconfig > ~/ifconfig.log" 
+      ]
     }
 }
 
