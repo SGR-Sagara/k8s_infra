@@ -95,7 +95,7 @@ resource "aws_instance" "k8s_master_node" {
     provisioner "remote-exec" {
       inline = [ "sudo hostname set-hostname ${local.master_names[0]}" ]
       connection {
-        host = aws_instance.k8s_master_node.publicDns
+        host = element(aws_instance.k8s_master_node.publicDns, count.index)
         type = "ssh"
         user = "ubuntu"
         private_key = "s3://sagara-test-b1/newkey.pem"
