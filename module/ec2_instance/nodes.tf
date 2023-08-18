@@ -77,7 +77,7 @@ resource "aws_iam_instance_profile" "ec2_profile" {
 
 # 1. Create EC2 MAster
 resource "aws_instance" "k8s_master_node" {
-  count = length(local.master)
+  count = length(local.master_names)
     ami = var.ami_id
     instance_type = local.master
     subnet_id = "${data.aws_subnets.public_subnets.ids[1]}"
