@@ -1,6 +1,0 @@
----
-- import_tasks: forward-ip4-traffick.yaml
-- name: Start Containerd
-  service:
-    name: containerd
-    starte: started

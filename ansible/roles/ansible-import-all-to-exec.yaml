@@ -1,8 +1,7 @@
 ---
 - name: Install and configure Kubernetes master
-  hosts: MASTER
+  hosts: all
   become: yes
   remote_user: ubuntu
   roles:
     - k8s-master
-    
