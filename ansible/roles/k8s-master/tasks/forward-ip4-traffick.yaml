@@ -1,0 +1,9 @@
+---
+- name: Forwarding IPv4 and letting iptables see bridged traffic
+  copy:
+    src: ../vars/k8s.conf
+    dest: /etc/modules-load.d/k8s.conf
+    owner: root
+    group: root
+    mode: '0644'
+    backup: yes
