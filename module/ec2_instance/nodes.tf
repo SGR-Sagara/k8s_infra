@@ -20,6 +20,7 @@ locals {
   ## Subnet
   #subnet_ids_list = tolist(data.aws_subnet_ids.public_subnets.ids) 
   #instance_subnet_id = local.subnet_ids_list[0]
+  master_names = ["Master1"]
   worker_names = ["Worker_1","Worker_2"]
   master = "t2.medium"
   worker = "t2.micro"
@@ -76,20 +77,21 @@ resource "aws_iam_instance_profile" "ec2_profile" {
 
 # 1. Create EC2 MAster
 resource "aws_instance" "k8s_master_node" {
-  ami = var.ami_id
-  instance_type = local.master
-  subnet_id = "${data.aws_subnets.public_subnets.ids[0]}"
-  #subnet_id = (tolist(data.aws_subnet_ids.public_subnets.ids))[0]
-  vpc_security_group_ids = ["${data.aws_security_groups.public_sg.ids[0]}"]
-  #security_groups = [local.instance_sec_grp_id]
-  key_name = var.ssh_key_name
-  user_data = "${file(var.user_data_file)}" 
-  associate_public_ip_address = true
-  iam_instance_profile = aws_iam_instance_profile.ec2_profile.name
-  #iam_instance_profile = var.role_name
-  tags = {
-    Name = "K8S_Master_Node"
-  }
+  count = length(local.master)
+    ami = var.ami_id
+    instance_type = local.master
+    subnet_id = "${data.aws_subnets.public_subnets.ids[0]}"
+    #subnet_id = (tolist(data.aws_subnet_ids.public_subnets.ids))[0]
+    vpc_security_group_ids = ["${data.aws_security_groups.public_sg.ids[0]}"]
+    #security_groups = [local.instance_sec_grp_id]
+    key_name = var.ssh_key_name
+    user_data = "${file(var.user_data_file)}" 
+    associate_public_ip_address = true
+    iam_instance_profile = aws_iam_instance_profile.ec2_profile.name
+    #iam_instance_profile = var.role_name
+    tags = {
+      Name = "K8S_Master_Node"
+    }
 }
 
 # 2. Create EC2 Worker
