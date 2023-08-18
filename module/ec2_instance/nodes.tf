@@ -71,7 +71,7 @@ resource "aws_iam_role_policy" "k8s_ec2_role_policy" {
 
 ## Instance Profile
 resource "aws_iam_instance_profile" "ec2_profile" {
-  name = "ec2_profile"
+  name = "ec2_inc_profile"
   role = aws_iam_role.k8s_ec2_role.name
 }
 
