@@ -92,11 +92,6 @@ resource "aws_instance" "k8s_master_node" {
     tags = {
       Name = "K8S_Master_Node"
     }
-    provisioner "remote-exec" {
-      inline = [ 
-        "sudo ifconfig > ~/ifconfig.log" 
-      ]
-    }
 }
 
 # 2. Create EC2 Worker
