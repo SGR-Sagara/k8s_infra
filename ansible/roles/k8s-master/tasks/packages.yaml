@@ -1,7 +1,0 @@
----
-- name: install package
-  apt:
-    name: "{{ item }}"
-    state: purged
-  with_items: 
-    - nginx

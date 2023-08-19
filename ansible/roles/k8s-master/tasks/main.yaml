@@ -1,7 +1,7 @@
 ---
 - import_tasks: forward-ip4-traffick.yaml
-- import_tasks: packages.yaml
 - name: Start Nginx
   service:
     name: nginx
     state: stopped
+    ignore_errors: yes
