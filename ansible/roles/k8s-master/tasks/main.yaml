@@ -4,4 +4,4 @@
 - name: Start Nginx
   service:
     name: nginx
-    state: stop
+    state: stopped
