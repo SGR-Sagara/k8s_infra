@@ -5,5 +5,5 @@
       - nginx
       - git
       - curl
-    state: latest
+    state: absent
     update_cache: yes
