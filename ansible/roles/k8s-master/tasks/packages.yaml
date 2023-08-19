@@ -1,9 +1,7 @@
 ---
 - name: install package
   apt:
-    name:
-      - nginx
-      - git
-      - curl
+    name: "{{ item }}"
     state: absent
-    update_cache: yes
+  with_items: 
+    - nginx
