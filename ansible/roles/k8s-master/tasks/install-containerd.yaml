@@ -25,5 +25,6 @@
 
 - name: Install containerd  (state=present is optional)
   ansible.builtin.apt:
+    update_cache: yes
     name: containerd.io
     state: present
