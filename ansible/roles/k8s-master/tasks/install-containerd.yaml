@@ -2,10 +2,11 @@
 - name: Install containerd, kubelet, kubeadm, kubelet
   ansible.builtin.apt:
     update_cache: yes
-    pkg:
+    name:
       - ca-certificates 
       - curl 
       - gnupg
+    state: present
 
 - name: Add Docker official GPG key - Part 1
   ansible.builtin.shell: 
