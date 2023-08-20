@@ -11,17 +11,15 @@
   ansible.builtin.shell: 
     cmd: install -m 0755 -d /etc/apt/keyrings
   
-- name: Add Docker official GPG key - Part 2
-  ansible.builtin.shell: 
-    cmd: cat /tmp/docker.gpg | gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+- name: Import Docker GPG Key
+  ansible.builtin.apt_key:
+    url: https://download.docker.com/linux/ubuntu/gpg
+    state: present
 
-- name: Add Docker official GPG key - Part 3
-  ansible.builtin.shell: 
-    cmd: chmod a+r /etc/apt/keyrings/docker.gpg
-
-- name: Docker set up the repository - Part 4
-  ansible.builtin.shell: 
-    cmd: echo "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu "$(. /etc/os-release && echo "$VERSION_CODENAME")" stable" | tee /etc/apt/sources.list.d/docker.list > /dev/null
+- name: Add Docker APT Repository
+  ansible.builtin.apt_repository:
+    repo: deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu "$(. /etc/os-release && echo "$VERSION_CODENAME")" stable"
+    state: present
 
 - name: Install containerd  (state=present is optional)
   ansible.builtin.apt:
