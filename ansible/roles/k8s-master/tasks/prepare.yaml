@@ -17,3 +17,7 @@
     mode: '0644'
     backup: yes
 
+- name: Get GPG key from "download.docker.com/linux/ubuntu/gpg"
+  ansible.builtin.get_url:
+    url: https://download.docker.com/linux/ubuntu/gpg
+    dest: /tmp/docker.gpg
