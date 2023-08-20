@@ -1,3 +1,9 @@
+# Apply sysctl params without reboot
+sysctl --system
+
+sysctl net.bridge.bridge-nf-call-iptables net.bridge.bridge-nf-call-ip6tables net.ipv4.ip_forward
+
+
 ###########################################
 # Insytall containerd
 ###########################################
