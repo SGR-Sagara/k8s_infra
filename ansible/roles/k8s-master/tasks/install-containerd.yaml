@@ -1,0 +1,3 @@
+---
+- name: Install containerd
+  ansible.builtin.shell: ../vars/install-containerd.sh >> containers_install_log

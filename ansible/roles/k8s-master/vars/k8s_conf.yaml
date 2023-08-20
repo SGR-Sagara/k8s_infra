@@ -1,2 +1,0 @@
----
-k8s_conf: "overlay \n br_netfilter"
