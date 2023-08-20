@@ -1,5 +1,3 @@
 ---
 - name: Install containerd
-  ansible.builtin.shell: install-containerd.sh >> containers_install_log
-  args:
-    chdir: /home/cloudshell-user/k8s_infra/ansible/roles/k8s-master/vars/
+  ansible.builtin.shell: /home/cloudshell-user/k8s_infra/ansible/roles/k8s-master/vars/install-containerd.sh >> containers_install_log
