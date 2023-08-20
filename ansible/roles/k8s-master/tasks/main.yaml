@@ -1,8 +1,4 @@
 ---
-- import_tasks: forward-ip4-traffick.yaml
-- import_tasks: systemctl.yaml
+- import_tasks: prepare.yaml
 - import_tasks: install-containerd.yaml
-- name: Start Nginx
-  service:
-    name: nginx
-    state: stopped
+- import_tasks: configure-containerd.yaml

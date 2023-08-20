@@ -1,0 +1,5 @@
+---
+- name: Container runtime configuration setup
+  ansible.builtin.shell: 
+    cmd: mkdir -p /etc/containerd ; touch /etc/containerd/config.toml ; containerd config default > /etc/containerd/config.toml
+    

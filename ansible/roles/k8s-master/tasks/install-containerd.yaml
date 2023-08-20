@@ -1,3 +1,29 @@
 ---
-- name: Install containerd
-  ansible.builtin.shell: /home/cloudshell-user/k8s_infra/ansible/roles/k8s-master/vars/install-containerd.sh
+- name: Install containerd, kubelet, kubeadm, kubelet
+  ansible.builtin.apt:
+    update_cache: yes
+    pkg:
+      - ca-certificates 
+      - curl 
+      - gnupg
+
+- name: Add Docker official GPG key - Part 1
+  ansible.builtin.shell: 
+    cmd: install -m 0755 -d /etc/apt/keyrings
+  
+- name: Add Docker official GPG key - Part 2
+  ansible.builtin.shell: 
+    cmd: curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+
+- name: Add Docker official GPG key - Part 3
+  ansible.builtin.shell: 
+    cmd: chmod a+r /etc/apt/keyrings/docker.gpg
+
+- name: Docker set up the repository - Part 4
+  ansible.builtin.shell: 
+    cmd: echo "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu "$(. /etc/os-release && echo "$VERSION_CODENAME")" stable" | tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+- name: Install containerd  (state=present is optional)
+  ansible.builtin.apt:
+    name: containerd.io
+    state: present

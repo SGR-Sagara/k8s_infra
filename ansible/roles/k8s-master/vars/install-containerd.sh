@@ -1,3 +1,17 @@
+###########################################
+# Forwarding IPv4 and letting iptables see bridged traffic
+###########################################
+echo "2. Forwarding IPv4"
+cp /home/ubuntu/ansible_files/k8s.conf /etc/modules-load.d/k8s.conf
+
+modprobe overlay
+modprobe br_netfilter
+
+# sysctl params required by setup, params persist across reboots
+cp /home/ubuntu/ansible_files/1k8s.conf /etc/sysctl.d/k8s.conf
+
+
+
 # Apply sysctl params without reboot
 sysctl --system
 
