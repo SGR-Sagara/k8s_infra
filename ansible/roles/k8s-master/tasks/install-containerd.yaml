@@ -16,8 +16,17 @@
     group: root
     mode: '0755'
 
+- name: Copy Shell script to execute
+  ansible.builtin.copy:
+    src: /home/cloudshell-user/k8s_infra/ansible/roles/k8s-master/vars/install-containerd.sh
+    dest: /home/ubuntu/install-containerd.sh
+    owner: ubuntu
+    group: ubuntu
+    mode: '0755'
+    backup: yes
+    
 - name: Set the gpg key and repository with shell command
-  ansible.builtin.shell: ../vars/install-containerd.sh
+  ansible.builtin.shell: /home/ubuntu/install-containerd.sh
     
 - name: Install containerd  (state=present is optional)
   ansible.builtin.apt:
