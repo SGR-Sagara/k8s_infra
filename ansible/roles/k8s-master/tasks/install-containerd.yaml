@@ -1,13 +1,11 @@
 ---
-- name: Run apt update
-  ansible.builtin.command: apt-get update
-    
 - name: Install containerd, kubelet, kubeadm, kubelet
   ansible.builtin.apt:
     name:
       - ca-certificates 
       - curl 
       - gnupg
+    update_cache: yes
     state: present
 
 - name: Create directory - Part 1
