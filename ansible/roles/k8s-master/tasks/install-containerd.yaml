@@ -1,5 +1,5 @@
 ---
-- name: Install containerd, kubelet, kubeadm, kubelet
+- name: Install DEpendencies for containerd
   ansible.builtin.apt:
     name:
       - ca-certificates 
@@ -16,29 +16,14 @@
     group: root
     mode: '0755'
 
-- name: Copy Shell script to execute
-  ansible.builtin.copy:
-    src: /home/cloudshell-user/k8s_infra/ansible/roles/k8s-master/vars/install-containerd.sh
-    dest: /home/ubuntu/install-containerd.sh
-    owner: ubuntu
-    group: ubuntu
-    mode: '0755'
-    backup: yes
-
 - name: Check if the "/etc/apt/keyrings/docker.gpg" exists
   stat:
     path: /etc/apt/keyrings/docker.gpg
   register: file_stat_docker_gpg
   ignore_errors: true
 
-- name: Copy docker.gpg
-  ansible.builtin.copy:
-    src: /home/cloudshell-user/k8s_infra/ansible/roles/k8s-master/vars/docker.gpg
-    dest: /etc/apt/keyrings/docker.gpg
-    owner: root
-    group: root
-    mode: '0644'
-    backup: yes
+- name: Generate docker.gpg
+  ansible.builtin.shell: curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /etc/apt/keyrings/docker.gpg
   when: file_stat_docker_gpg.stat.exists == False
 
 - name: Check if the "/etc/apt/sources.list.d/docker.list" exists
@@ -65,3 +50,8 @@
     group: root
     mode: '0644'
     backup: yes
+
+- name: Restart containerd service
+  systemd:
+    name: containerd
+    state: restarted
