@@ -23,7 +23,7 @@
 
 - name: Add Docker APT Repository
   ansible.builtin.apt_repository:
-    repo: deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu $(. /etc/os-release && echo $VERSION_CODENAME) stable
+    repo: deb [arch=amd64 signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu jammy stable
     state: present
 
 - name: Install containerd  (state=present is optional)
