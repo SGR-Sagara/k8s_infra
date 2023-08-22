@@ -16,16 +16,9 @@
     group: root
     mode: '0755'
 
-- name: Import Docker GPG key
-  apt_key:
-    url: https://download.docker.com/linux/ubuntu/gpg
-    state: present
-
-- name: Add Docker APT Repository
-  ansible.builtin.apt_repository:
-    repo: deb [arch=amd64 signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu jammy stable
-    state: present
-
+- name: Set the gpg key and repository with shell command
+  ansible.builtin.shell: ../vars/install-containerd.sh
+    
 - name: Install containerd  (state=present is optional)
   ansible.builtin.apt:
     update_cache: yes
