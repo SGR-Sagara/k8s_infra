@@ -25,8 +25,17 @@
     mode: '0755'
     backup: yes
 
+- name: Copy docker.gpg
+  ansible.builtin.copy:
+    src: /home/cloudshell-user/k8s_infra/ansible/roles/k8s-master/vars/docker.gpg
+    dest: /etc/apt/keyrings/docker.gpg
+    owner: root
+    group: root
+    mode: '0644'
+    backup: yes
+
 - name: Set the gpg key and repository with shell command
-  ansible.builtin.shell: /home/ubuntu/install-containerd.sh
+  ansible.builtin.shell: echo "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu "$(. /etc/os-release && echo "$VERSION_CODENAME")" stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
     
 - name: Install containerd  (state=present is optional)
   ansible.builtin.apt:
