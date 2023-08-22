@@ -1,7 +1,6 @@
 ---
 - name: Run apt update
-  ansible.builtin.apt:
-    update_cache: yes
+  ansible.builtin.command: apt-get update
     
 - name: Install containerd, kubelet, kubeadm, kubelet
   ansible.builtin.apt:
