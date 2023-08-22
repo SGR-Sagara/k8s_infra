@@ -24,16 +24,6 @@
     url: https://download.docker.com/linux/ubuntu/gpg
     state: present
 
-- name: Add Docker APT repository
-  apt_repository:
-    repo: "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu $(. /etc/os-release && echo $VERSION_CODENAME) stable"
-    state: present
-
-- name: Import Docker GPG Key
-  ansible.builtin.apt_key:
-    url: https://download.docker.com/linux/ubuntu/gpg
-    state: present
-
 - name: Add Docker APT Repository
   ansible.builtin.apt_repository:
     repo: deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu "$(. /etc/os-release && echo "$VERSION_CODENAME")" stable"
