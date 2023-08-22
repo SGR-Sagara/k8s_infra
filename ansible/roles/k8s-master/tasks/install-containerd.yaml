@@ -1,4 +1,8 @@
 ---
+- name: Run apt update
+  ansible.builtin.apt:
+    update_cache: yes
+    
 - name: Install containerd, kubelet, kubeadm, kubelet
   ansible.builtin.apt:
     name:
@@ -7,10 +11,24 @@
       - gnupg
     state: present
 
-- name: Add Docker official GPG key - Part 1
-  ansible.builtin.shell: 
-    cmd: install -m 0755 -d /etc/apt/keyrings
-  
+- name: Create directory - Part 1
+  ansible.builtin.file:
+    path: /etc/apt/keyrings
+    state: directory
+    owner: root
+    group: root
+    mode: '0755'
+
+- name: Import Docker GPG key
+  apt_key:
+    url: https://download.docker.com/linux/ubuntu/gpg
+    state: present
+
+- name: Add Docker APT repository
+  apt_repository:
+    repo: "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu $(. /etc/os-release && echo $VERSION_CODENAME) stable"
+    state: present
+
 - name: Import Docker GPG Key
   ansible.builtin.apt_key:
     url: https://download.docker.com/linux/ubuntu/gpg
