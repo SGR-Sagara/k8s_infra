@@ -31,6 +31,6 @@
 - name: Install kubeadm
   ansible.builtin.apt:
     name:
-      - kubeadm=1.28.0
+      - kubeadm
     update_cache: yes
-    state: present
+    state: absent
