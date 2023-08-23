@@ -17,3 +17,5 @@
     mode: '0644'
     backup: yes
 
+- name: Run few commands for IPv4 and letting iptables see bridged traffic
+  ansible.builtin.shell: sudo modprobe overlay ; sudo modprobe br_netfilter ; sudo sysctl --system
