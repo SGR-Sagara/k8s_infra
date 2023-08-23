@@ -4,4 +4,4 @@
     name:
       - kubectl=1.27.0-00
     update_cache: yes
-    state: absent
+    state: present
