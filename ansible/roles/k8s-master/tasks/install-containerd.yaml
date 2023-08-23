@@ -50,8 +50,10 @@
     group: root
     mode: '0644'
     backup: yes
+  register: config_toml_updated
 
 - name: Restart containerd service
   systemd:
     name: containerd
     state: restarted
+  when: config_toml_updated.changed
