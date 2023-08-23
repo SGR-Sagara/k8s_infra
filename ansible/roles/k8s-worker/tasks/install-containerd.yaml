@@ -1,0 +1,57 @@
+---
+- name: Install Dependencies for containerd
+  ansible.builtin.apt:
+    name:
+      - ca-certificates 
+      - curl 
+      - gnupg
+    update_cache: yes
+    state: present
+
+- name: Create directory - Part 1
+  ansible.builtin.file:
+    path: /etc/apt/keyrings
+    state: directory
+    owner: root
+    group: root
+    mode: '0755'
+
+- name: Check if the "/etc/apt/keyrings/docker.gpg" exists
+  stat:
+    path: /etc/apt/keyrings/docker.gpg
+  register: file_stat_docker_gpg
+  ignore_errors: true
+
+- name: Generate docker.gpg
+  ansible.builtin.shell: curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+  when: file_stat_docker_gpg.stat.exists == False
+
+- name: Check if the "/etc/apt/sources.list.d/docker.list" exists
+  stat:
+    path: /etc/apt/sources.list.d/docker.list
+  register: file_stat_docker_list
+  ignore_errors: true
+
+- name: Set the gpg key and repository with shell command
+  ansible.builtin.shell: echo "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu "$(. /etc/os-release && echo "$VERSION_CODENAME")" stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+  when: file_stat_docker_list.stat.exists == False
+
+- name: Install containerd  (state=present is optional)
+  ansible.builtin.apt:
+    update_cache: yes
+    name: containerd.io
+    state: present
+
+- name: Create directory for runtime config file config.toml
+  ansible.builtin.copy:
+    src: /home/cloudshell-user/k8s_infra/ansible/roles/k8s-master/vars/config.toml
+    dest: /etc/containerd/config.toml
+    owner: root
+    group: root
+    mode: '0644'
+    backup: yes
+
+- name: Restart containerd service
+  systemd:
+    name: containerd
+    state: restarted
