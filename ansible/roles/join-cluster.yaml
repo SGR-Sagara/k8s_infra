@@ -7,4 +7,4 @@
   tasks:
 
   - name: Cluster Join command
-    ansible.builtin.shell: kubeadm join 10.0.2.30:6443 --token eo08h5.1p7205kb7mylvlqe --discovery-token-ca-cert-hash sha256:34f53f74d50dd575ab1822ee73e0d3ff150b2c8abb9369796d0b22babd6b5126
+    ansible.builtin.shell:
