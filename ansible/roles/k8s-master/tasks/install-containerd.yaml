@@ -1,5 +1,5 @@
 ---
-- name: Install DEpendencies for containerd
+- name: Install Dependencies for containerd
   ansible.builtin.apt:
     name:
       - ca-certificates 
@@ -39,7 +39,7 @@
 - name: Install containerd  (state=present is optional)
   ansible.builtin.apt:
     update_cache: yes
-    name: containerd.io=1.6.22
+    name: containerd.io
     state: present
 
 - name: Create directory for runtime config file config.toml
