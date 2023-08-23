@@ -33,4 +33,4 @@
     name:
       - kubeadm
     update_cache: yes
-    state: present
+    state: absent
