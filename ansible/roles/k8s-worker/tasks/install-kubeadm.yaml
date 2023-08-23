@@ -27,3 +27,10 @@
 - name: Download the Google Cloud public signing key with shell command
   ansible.builtin.shell: echo "deb [signed-by=/etc/apt/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
   when: file_stat_kubernetes_list.stat.exists == False
+
+- name: Install kubeadm
+  ansible.builtin.apt:
+    name:
+      - kubeadm
+    update_cache: yes
+    state: present
