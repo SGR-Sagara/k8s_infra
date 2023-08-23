@@ -22,7 +22,7 @@ sudo cat /sys/class/dmi/id/product_uuid
 echo "1. SWAP OFF"
 ## Swap Off
 swapoff -a
-sed -i '/swap/d' /etc/fstab
+sudo sed -i '/swap/d' /etc/fstab
 
 ###########################################
 # Forwarding IPv4 and letting iptables see bridged traffic
@@ -74,11 +74,12 @@ echo "5. Create /etc/containerd/config.toml"
 sudo mkdir -p /etc/containerd
 sudo touch /etc/containerd/config.toml
 echo "6. Set containerd toml config"
-cat << EOF > sudo /etc/containerd/config.toml
+containerd config default > /etc/containerd/config.toml
+
+SET
 [plugins."io.containerd.grpc.v1.cri".containerd.runtimes.runc]
   [plugins."io.containerd.grpc.v1.cri".containerd.runtimes.runc.options]
     SystemdCgroup = true
-EOF
 
 echo "7. Check /etc/containerd/config.toml"
 sudo cat /etc/containerd/config.toml
@@ -107,4 +108,12 @@ sudo apt-get update
 sudo apt-get install -y kubelet kubeadm kubectl
 sudo apt-mark hold kubelet kubeadm kubectl
 
+
+
+---------
+sudo kubeadm init --pod-network-cidr=10.1.0.0/16 --apiserver-advertise-address=10.0.2.30
+
+
+----- Install the Network Plugins ---------
+kubectl apply -f https://github.com/weaveworks/weave/releases/download/v2.8.1/weave-daemonset-k8s.yaml
 
