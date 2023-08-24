@@ -1,7 +1,5 @@
 # demo.aws_ec2.yml
 plugin: amazon.aws.aws_ec2
-regions:
-  - ap-south-1
-filters:
-  # All instances with their `Environment` tag set to `dev`
-  tag:Name: K8S_Master_Node
+master_group:
+  - key: tags
+    prefix: K8S
