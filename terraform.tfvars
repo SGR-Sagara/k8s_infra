@@ -29,7 +29,7 @@ public_access_sg_ingress_rules = [
 ### ----------- EC2 nodes
 ami_id         = "ami-0f5ee92e2d63afc18"
 ec2_node_cnt   = 1
-ssh_key_name   = "newkey"
+ssh_key_name   = "NewKey"
 instance_type  = "t2.micro"
 role_name      = "admin"
 user_data_file = <<UDT

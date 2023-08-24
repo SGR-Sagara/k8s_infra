@@ -1,8 +1,4 @@
-MASTERS:
-  hosts:
-    3.7.46.157
-
-WORKERS:
-  hosts:
-    52.66.234.231
-    13.127.224.137
+# demo.aws_ec2.yml
+plugin: amazon.aws.aws_ec2
+regions:
+  - ap-south-1
