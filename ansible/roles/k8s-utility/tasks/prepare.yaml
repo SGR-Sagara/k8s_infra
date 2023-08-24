@@ -1,7 +1,7 @@
 ---
 - name: Forwarding IPv4 and letting iptables see bridged traffic
   ansible.builtin.copy:
-    src: /home/cloudshell-user/k8s_infra/ansible/roles/k8s-master/vars/k8s.conf
+    src: /home/cloudshell-user/k8s_infra/ansible/roles/k8s-utility/vars/k8s.conf
     dest: /etc/modules-load.d/k8s.conf
     owner: root
     group: root
@@ -10,7 +10,7 @@
 
 - name: Copy k8s.conf to  /etc/sysctl.d/ sysctl params required by setup, params persist across reboots
   ansible.builtin.copy:
-    src: /home/cloudshell-user/k8s_infra/ansible/roles/k8s-master/vars/1k8s.conf
+    src: /home/cloudshell-user/k8s_infra/ansible/roles/k8s-utility/vars/1k8s.conf
     dest: /etc/sysctl.d/k8s.conf
     owner: root
     group: root
