@@ -8,22 +8,23 @@ terraform {
   }
 }
 
+/*
 terraform {
   backend "local" {
     path = "terraform.tfstate"
   }
 }
+*/
 
 
-/*
 terraform {
   backend "s3" {
-    bucket = "sgr-it-lab-tf-states"
+    bucket = "terraform-state-files-sgr-jay"
     key    = "k8s.tfstate"
     region = "ap-south-1"
   }
 }
-*/
+
 
 /*
 ## Terraform Backend
