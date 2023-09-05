@@ -32,6 +32,7 @@ ec2_node_cnt   = 1
 ssh_key_name   = "NewKey"
 instance_type  = "t2.micro"
 role_name      = "admin"
+root_sorage = 30
 user_data_file = <<UDT
 #!/bin/bash
 ### K8S cluster nodes

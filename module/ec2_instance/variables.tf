@@ -34,8 +34,13 @@ variable "user_data_file" {
   type = string
   default = "yum_node_setup.sh"
 }
-## EC2 vpc_security_group_ids
+# 8. EC2 vpc_security_group_ids
 variable "vpc_security_group_ids" {
     type = list(string)
     default = [ "value" ]
+}
+# 9. Volume size
+variable "root_sorage" {
+  type = number
+  default = 20
 }

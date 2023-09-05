@@ -75,5 +75,10 @@ variable "role_name" {
 variable "user_data_file" {
   type = string
 }
+# 9. Volume size
+variable "root_sorage" {
+  type = number
+  default = 20
+}
 
 ######################### Database Creation related Variables
