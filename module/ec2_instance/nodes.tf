@@ -88,6 +88,7 @@ resource "aws_instance" "k8s_master_node" {
     user_data = "${file(var.user_data_file)}" 
     associate_public_ip_address = true
     iam_instance_profile = aws_iam_instance_profile.ec2_profile.name
+    root_block_device = encrypted
     #iam_instance_profile = var.role_name
     tags = {
       Name = "K8S_Master_Node"
@@ -107,9 +108,11 @@ resource "aws_instance" "k8s_worker_node" {
     user_data = "${file(var.user_data_file)}" 
     associate_public_ip_address = true
     iam_instance_profile = aws_iam_instance_profile.ec2_profile.name
+    root_block_device = encrypted
     #iam_instance_profile = var.role_name
     tags = {
       Name = "K8S_Worker_Node_${count.index}"
+      Type = "WORKER"
     }
 }
 
