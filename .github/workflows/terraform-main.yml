@@ -34,7 +34,7 @@ jobs:
     - name: Configure AWS Credentials
       uses: aws-actions/configure-aws-credentials@v1
       with:
-        role-to-assume: ${{env.AWS_ROLE_ASSUME}}
+        role-to-assume: "arn:aws:iam::598792377165:role/github-action-oidc"
         role-session-name: project_terra_session
         aws-region: ${{env.AWS_REGION}}
 
