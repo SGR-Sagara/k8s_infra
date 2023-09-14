@@ -6,4 +6,4 @@
 
   tasks:
     - name: Run kubeadm init
-        ansible.builtin.shell: kubeadm init --pod-network-cidr=10.0.0.0/24 --apiserver-advertise-address=10.0.2.71
+      ansible.builtin.shell: kubeadm init --pod-network-cidr=10.0.0.0/24 --apiserver-advertise-address=10.0.2.71
