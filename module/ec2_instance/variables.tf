@@ -45,22 +45,24 @@ variable "root_sorage" {
   default = 20
 }
 
-# 10. Master Nodes
+# 10. Master Nodes name
 variable "master_names" {
   type = list(string)
   default = ["Master1"]
 }
-# 11. Master Type - master_names
+# 11. Master Node instance type
 variable "master_type" {
   type = string
+  default = "t2.micro"
 }
 
-# 12. Worker Nodes
+# 12. Worker Nodes names
 variable "worker_names" {
   type = list(string)
   default = ["Worker_1","Worker_2"]
 }
-# 13. Worker Type - worker_names
+# 13. Worker nodes instance type
 variable "worker_type" {
   type = string
+  default = "t2.micro"
 }
