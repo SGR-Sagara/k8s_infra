@@ -33,6 +33,10 @@ ssh_key_name   = "NewKey"
 instance_type  = "t2.micro"
 role_name      = "admin"
 root_sorage = 30
+master_names = ["Master1"]
+master_type = "t2.medium"
+worker_names = ["Worker_1","Worker_2"]
+worker_type = "t2.micro"
 user_data_file = <<UDT
 #!/bin/bash
 ### K8S cluster nodes
