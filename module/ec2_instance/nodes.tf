@@ -20,10 +20,10 @@ locals {
   ## Subnet
   #subnet_ids_list = tolist(data.aws_subnet_ids.public_subnets.ids) 
   #instance_subnet_id = local.subnet_ids_list[0]
-  master_names = ["Master1"]
-  worker_names = ["Worker_1","Worker_2"]
-  master = "t2.medium"
-  worker = "t2.micro"
+  #master_names = ["Master1"]
+  #worker_names = ["Worker_1","Worker_2"]
+  #master = "t2.medium"
+  #worker = "t2.micro"
   ## Security Group
   #security_groups = tolist(var.vpc_security_group_ids)
   #instance_sec_grp_id = local.security_groups[0]
@@ -79,7 +79,7 @@ resource "aws_iam_instance_profile" "ec2_profile" {
 resource "aws_instance" "k8s_master_node" {
   count = length(local.master_names)
     ami = var.ami_id
-    instance_type = local.master
+    instance_type = var.master_type
     subnet_id = "${data.aws_subnets.public_subnets.ids[1]}"
     #subnet_id = (tolist(data.aws_subnet_ids.public_subnets.ids))[0]
     vpc_security_group_ids = ["${data.aws_security_groups.public_sg.ids[0]}"]
@@ -96,7 +96,8 @@ resource "aws_instance" "k8s_master_node" {
   }
     #iam_instance_profile = var.role_name
     tags = {
-      Name = "K8S_Master_Node"
+      Name = "${var.master_names[count.index]}"
+      Type = "MASTER"
     }
 }
 
@@ -104,7 +105,7 @@ resource "aws_instance" "k8s_master_node" {
 resource "aws_instance" "k8s_worker_node" {
   count = length(local.worker_names)
     ami = var.ami_id
-    instance_type = local.worker
+    instance_type = var.worker_type
     subnet_id = "${data.aws_subnets.public_subnets.ids[1]}"
     #subnet_id = (tolist(data.aws_subnet_ids.public_subnets.ids))[0]
     vpc_security_group_ids = ["${data.aws_security_groups.public_sg.ids[0]}"]
@@ -121,7 +122,7 @@ resource "aws_instance" "k8s_worker_node" {
     }
     #iam_instance_profile = var.role_name
     tags = {
-      Name = "K8S_Worker_Node_${count.index}"
+      Name = "${var.worker_names[count.index]}"
       Type = "WORKER"
     }
 }

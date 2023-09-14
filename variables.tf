@@ -97,7 +97,7 @@ variable "worker_names" {
   default = ["Worker_1","Worker_2"]
 }
 # 5. Worker Type - worker_names
-variable "master_type" {
+variable "worker_type" {
   type = string
 }
 ######################### Database Creation related Variables
