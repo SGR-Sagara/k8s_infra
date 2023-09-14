@@ -77,7 +77,7 @@ resource "aws_iam_instance_profile" "ec2_profile" {
 
 # 1. Create EC2 MAster
 resource "aws_instance" "k8s_master_node" {
-  count = length(local.master_names)
+  count = length(var.master_names)
     ami = var.ami_id
     instance_type = var.master_type
     subnet_id = "${data.aws_subnets.public_subnets.ids[1]}"
@@ -103,7 +103,7 @@ resource "aws_instance" "k8s_master_node" {
 
 # 2. Create EC2 Worker
 resource "aws_instance" "k8s_worker_node" {
-  count = length(local.worker_names)
+  count = length(var.worker_names)
     ami = var.ami_id
     instance_type = var.worker_type
     subnet_id = "${data.aws_subnets.public_subnets.ids[1]}"
