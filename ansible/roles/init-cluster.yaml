@@ -1,0 +1,9 @@
+---
+- name: Initialize K8S Cluster
+  hosts: MASTERS
+  become: yes
+  remote_user: root
+
+  tasks:
+    - name: Run kubeadm init
+      ansible.builtin.shell: kubeadm init --pod-network-cidr=10.0.0.0/24 --apiserver-advertise-address=10.0.2.71

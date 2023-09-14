@@ -1,7 +1,0 @@
----
-- name: Install and configure Kubernetes worker 
-  hosts: WORKERS
-  become: yes
-  remote_user: ubuntu
-  roles:
-    - k8s-worker

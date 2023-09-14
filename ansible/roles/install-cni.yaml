@@ -1,0 +1,10 @@
+---
+- name: Join to the Cluster
+  hosts: MASTERS
+  become: yes
+  remote_user: ubuntu
+
+  tasks:
+
+  - name: Cluster Join command
+    ansible.builtin.shell: kubectl apply -f https://github.com/weaveworks/weave/releases/download/v2.8.1/weave-daemonset-k8s.yaml
