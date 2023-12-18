@@ -7,3 +7,6 @@ This project create 1 Master and few worker nodes using Terraform and Ansible pl
 1. This repo allows you to deploy EC2-based Kubernetes Master and Worker nodes.
 2. You can use the ansible roles to install all the Kubernetes components.
 3. We use the SSM run command to join multiple worker nodes to the cluster.
+
+
+![alt text]![alt text](https://github.com/sgrsaga/k8s_infra/blob/master/K8S-Network-EC2-Based.png?raw=true))
