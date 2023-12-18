@@ -1,6 +1,6 @@
 Summary:
 
-This project create 1 Master and few worker nodes using Terraform and Ansible playbooks.
+This project creates 1 Master and a few worker nodes using Terraform and Ansible playbooks.
 
 ** This repo is Terraform and Ansible-based Kubernetes cluster implementation on AWS
 
