@@ -9,4 +9,4 @@ This project creates 1 Master and a few worker nodes using Terraform and Ansible
 3. We use the SSM run command to join multiple worker nodes to the cluster.
 
 
-![Alt text](https://github.com/sgrsaga/k8s_infra/blob/Image/K8S-Network-EC2-Based.png?raw=true "Optional Title")
+![K8S infrastructure summary](K8S-Network-EC2-Based.png)
