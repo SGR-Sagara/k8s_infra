@@ -1,8 +1,8 @@
----
-- name: k8s-utility handlers
-  handlers:
-    - name: Restart containerd
-      systemd:
-        name: containerd
-        state: restarted
+# ---
+# - name: k8s-utility handlers
+#   handlers:
+#     - name: Restart containerd
+#       systemd:
+#         name: containerd
+#         state: restarted
   
