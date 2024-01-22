@@ -43,17 +43,16 @@
     state: present
 
 - name: Create directory for runtime config file config.toml
-  ansible.builtin.copy:
-    src: /home/cloudshell-user/k8s_infra/ansible/roles/k8s-utility/vars/config.toml
+  template:
+    src: ../files/config_toml.j2
     dest: /etc/containerd/config.toml
-    owner: root
-    group: root
-    mode: '0644'
-    backup: yes
-  register: config_toml_updated
+  vars:
+    sysCgroup : true 
+  notify: Restart containerd
 
-- name: Restart containerd service
-  systemd:
-    name: containerd
-    state: restarted
-  when: config_toml_updated.changed
+  # handlers:
+  #   - name: Restart containerd
+  #     systemd:
+  #       name: containerd
+  #       state: restarted
+  

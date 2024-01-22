@@ -1,6 +1,6 @@
 ---
 - name: Install and configure Kubernetes master
-  hosts: all
+  hosts: tag_Type_MASTER
   become: yes
   remote_user: ubuntu
   roles:
