@@ -106,7 +106,7 @@ resource "aws_instance" "k8s_worker_node" {
   count = length(var.worker_names)
     ami = var.ami_id
     instance_type = var.worker_type
-    subnet_id = var.priv_subnet[2]
+    subnet_id = var.priv_subnet[1]
     #subnet_id = (tolist(data.aws_subnet_ids.public_subnets.ids))[0]
     vpc_security_group_ids = [var.priv_sg]
     #security_groups = [local.instance_sec_grp_id]
