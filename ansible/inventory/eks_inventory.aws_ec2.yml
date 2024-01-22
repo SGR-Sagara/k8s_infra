@@ -10,4 +10,5 @@ keyed_groups:
   - key: tags
     prefix: tag
 
-#vpc_destination_variable = ip_address: private_ip_address
+compose:
+  ansible_host: private_ip_address
