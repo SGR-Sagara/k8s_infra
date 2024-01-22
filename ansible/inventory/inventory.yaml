@@ -1,5 +1,0 @@
-# demo.aws_ec2.yml
-plugin: amazon.aws.aws_ec2
-master_group:
-  - key: tags
-    prefix: K8S
