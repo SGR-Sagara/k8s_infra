@@ -1,10 +1,8 @@
 ---
 - name: Initialize the Kubernetes cluster with provided variables
-  ansible.builtin.script:
-    - ../files/cluster.sh
+  ansible.builtin.script: ../files/cluster.sh "10.0.0.0/24" "10.0.2.87"
   args:
-    cluster_pod_cidr: cluster_pod_cidr
-    api_server_ip: api_server_ip
+    executable : /bin/bash
   register: initialize_result
 
 - name: Show the std putput 
