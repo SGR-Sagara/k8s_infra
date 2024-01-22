@@ -44,7 +44,7 @@
 
 - name: Create directory for runtime config file config.toml
   template:
-    src: ../files/config_toml.j2
+    src: ../templates/config_toml.j2
     dest: /etc/containerd/config.toml
   vars:
     sysCgroup : true 

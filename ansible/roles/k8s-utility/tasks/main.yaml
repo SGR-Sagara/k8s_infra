@@ -1,6 +1,9 @@
 ---
-- import_tasks: prepare.yaml
-- import_tasks: install-containerd.yaml
-- import_tasks: install-kubeadm.yaml
-- import_tasks: install-kubectl.yaml
-- import_tasks: install-kubelet.yaml
+- import_tasks: 
+    - prepare.yaml
+    - install-containerd.yaml
+    - install-kubeadm.yaml
+    - install-kubectl.yaml
+    - install-kubelet.yaml
+- import_handlers: 
+    - ../templates/main.yaml
