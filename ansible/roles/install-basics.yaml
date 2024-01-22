@@ -4,6 +4,6 @@
   become: yes
   remote_user: ubuntu
   vars:
-    syscgroup: true
+    syscgroup: "true"
   roles:
     - k8s-utility
