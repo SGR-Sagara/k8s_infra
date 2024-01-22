@@ -3,6 +3,6 @@
 - name: Initialize K8S Cluster
   hosts: tag_Type_MASTER
   become: yes
-  remote_user: root
+  remote_user: ubuntu
   roles:
     - k8s_master
