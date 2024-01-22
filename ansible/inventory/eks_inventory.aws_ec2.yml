@@ -9,5 +9,5 @@ regions:
 keyed_groups:
   - key: tags
     prefix: tag
-compose:
-  ansible_host: public_dns_name
+
+vpc_destination_variable = ip_address: private_ip_address
