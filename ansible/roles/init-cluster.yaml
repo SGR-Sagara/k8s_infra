@@ -1,9 +1,11 @@
+# code: language=ansible
 ---
 - name: Initialize K8S Cluster
-  hosts: MASTERS
+  hosts: tag_Type_MASTER
   become: yes
   remote_user: root
-
-  tasks:
-    - name: Run kubeadm init
-      ansible.builtin.shell: kubeadm init --pod-network-cidr=10.0.0.0/24 --apiserver-advertise-address=10.0.2.71
+  vars:
+    cluster_pod_cidr: "10.0.0.0/24"
+    api_server_ip: "test"
+  roles:
+    - k8s_master

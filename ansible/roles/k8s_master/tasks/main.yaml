@@ -1,0 +1,2 @@
+---
+- import_task: cluster_initialize.yaml

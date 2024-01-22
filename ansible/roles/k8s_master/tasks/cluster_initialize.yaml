@@ -1,0 +1,10 @@
+---
+- name: Initialize the Kubernetes cluster with provided variables
+  ansible.builtin.script:
+    - ../files/cluster.sh
+  args:
+    cluster_pod_cidr: cluster_pod_cidr
+    api_server_ip: api_server_ip
+  register: initialize_result
+  debug:
+    var: initialize_result.stdout
