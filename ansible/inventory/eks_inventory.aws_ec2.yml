@@ -9,6 +9,7 @@ regions:
 keyed_groups:
   - key: tags
     prefix: tag
-
-compose:
-  ansible_host: private_ip_address
+  - key: 
+hostnames:
+  # This option allows displaying the public ip addresses.
+  - ip-address
