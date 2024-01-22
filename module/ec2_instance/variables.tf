@@ -69,10 +69,12 @@ variable "worker_type" {
 
 # 14. Private subnet list
 variable "priv_subnet" {
-  type = list(string)  
+  type = list(string)
+  default = [ "test" ]
 }
 
 # 15. Private SG
 variable "priv_sg" {
   type = string
+  default = "test"
 }
