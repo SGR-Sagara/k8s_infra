@@ -48,9 +48,9 @@
     dest: /etc/containerd/config.toml
   notify: Restart containerd
 
-  handlers:
-    - name: Restart containerd
-      systemd:
-        name: containerd
-        state: restarted
+  # handlers:
+  #   - name: Restart containerd
+  #     systemd:
+  #       name: containerd
+  #       state: restarted
   
