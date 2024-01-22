@@ -6,5 +6,7 @@
     cluster_pod_cidr: cluster_pod_cidr
     api_server_ip: api_server_ip
   register: initialize_result
+
+- name: Show the std putput 
   debug:
     var: initialize_result.stdout
