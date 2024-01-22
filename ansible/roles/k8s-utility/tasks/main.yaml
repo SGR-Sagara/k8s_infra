@@ -1,5 +1,5 @@
 ---
-- import_handlers: ../handlers/main.yaml
+- import_tasks: ../handlers/main.yaml
 - import_tasks: prepare.yaml
 - import_tasks: install-containerd.yaml
 - import_tasks: install-kubeadm.yaml
