@@ -46,11 +46,11 @@
   ansible.builtin.template:
     src: ../templates/config_toml.j2
     dest: /etc/containerd/config.toml
-  #notify: Restart containerd
+  notify: Restart containerd
 
-  # handlers:
-  #   - name: Restart containerd
-  #     systemd:
-  #       name: containerd
-  #       state: restarted
+  handlers:
+    - name: Restart containerd
+      systemd:
+        name: containerd
+        state: restarted
   
