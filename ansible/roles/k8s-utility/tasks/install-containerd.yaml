@@ -43,11 +43,11 @@
     state: present
 
 - name: Create directory for runtime config file config.toml
-  template:
+  ansible.builtin.template:
     src: ../templates/config_toml.j2
     dest: /etc/containerd/config.toml
   vars:
-    sysCgroup : true 
+    syscgroup : true 
   notify: Restart containerd
 
   handlers:
