@@ -46,8 +46,6 @@
   ansible.builtin.template:
     src: ../templates/config_toml.j2
     dest: /etc/containerd/config.toml
-  vars:
-    syscgroup : true 
   notify: Restart containerd
 
   handlers:
