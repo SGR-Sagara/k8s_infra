@@ -16,5 +16,5 @@ hostnames:
   # This option allows displaying the private ip addresses using `tag:Name` as a prefix.
   # `name` can be one of the options specified in http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html#options.
   - name: 'private-ip-address'
-    separator: '_'
-    prefix: 'tag:Name'
+    # separator: '_'
+    # prefix: 'tag:Name'
