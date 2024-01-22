@@ -100,4 +100,14 @@ variable "worker_names" {
 variable "worker_type" {
   type = string
 }
+# 14. Private subnet list
+variable "priv_subnet" {
+  type = list(string)  
+}
+
+# 15. Private SG
+variable "priv_sg" {
+  type = string
+}
+
 ######################### Database Creation related Variables

@@ -66,3 +66,13 @@ variable "worker_type" {
   type = string
   default = "t2.micro"
 }
+
+# 14. Private subnet list
+variable "priv_subnet" {
+  type = list(string)  
+}
+
+# 15. Private SG
+variable "priv_sg" {
+  type = string
+}

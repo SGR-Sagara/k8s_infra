@@ -71,6 +71,8 @@ module "ec2_instances" {
   ssh_key_name  = var.ssh_key_name
   master_type = var.master_type
   worker_type = var.worker_type
+  priv_subnet = module.main_network.private_subnet_list
+  priv_sg     = module.main_network.private_security_group
   #iam_instance_profile = var.role_name
   #vpc_security_group_ids = [module.main_network.public_security_group]
   #user_data = file(var.user_data_file)
