@@ -139,7 +139,7 @@ resource "aws_security_group_rule" "public_sg_ingress_rules" {
 # 1.7. Create Private Access Security Group  - only from Public Security group allowed
 # 2.6. Allow Inbound traffic from Public Security group to the Private Security group
 resource "aws_security_group" "private_access_sg" {
-  name = "private_sg"
+  name = "PRIVATE_SG"
   vpc_id = aws_vpc.new_vpc.id
   ingress {
     from_port = 0
