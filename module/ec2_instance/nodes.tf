@@ -113,7 +113,7 @@ resource "aws_instance" "k8s_worker_node" {
     #security_groups = [local.instance_sec_grp_id]
     key_name = var.ssh_key_name
     user_data = "${file(var.user_data_file)}" 
-    associate_public_ip_address = true
+    associate_public_ip_address = false
     iam_instance_profile = aws_iam_instance_profile.ec2_profile.name
     root_block_device {
       volume_type           = "gp2"
