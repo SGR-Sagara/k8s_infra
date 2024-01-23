@@ -1,6 +1,7 @@
 ---
 - name: Update apt package cache
-  apt:
+  become_user: ubuntu
+  ansible.builtin.apt:
     update_cache: yes
 
 - name: Install Dependencies for containerd
