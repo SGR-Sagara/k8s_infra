@@ -2,7 +2,6 @@
 ---
 - name: Install CNI pulugin
   hosts: tag_Type_MASTER
-  become: yes
   remote_user: ubuntu
   tasks:
     - name: Install WeaveNet CNI plugin
