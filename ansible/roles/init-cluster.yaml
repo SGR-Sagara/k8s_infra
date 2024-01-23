@@ -7,4 +7,4 @@
   roles:
     - role: k8s_master
       cluster_pod_cidr: "10.0.0.0/24"
-      api_server_ip: "10.0.1.17"
+      api_server_ip: "10.0.1.171"
