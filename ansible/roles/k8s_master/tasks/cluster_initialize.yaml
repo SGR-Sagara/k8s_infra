@@ -20,9 +20,9 @@
   debug:
     var: initialize_result.stdout
 
-- name: Configure for regular users to access cluster
+- name: Create .kube folder 
   ansible.builtin.file:
-    path: "{{home_folder}}/.kube/config"
+    path: "{{home_folder}}/.kube"
     state: directory
     owner: ubuntu
     group: ubuntu
@@ -34,10 +34,11 @@
   register: file_stat_admin_config
   ignore_errors: true
 
+- name: Copy the admin.config file to .kube folder
+  ansible.builtin.shell: /etc/kubernetes/admin.conf "{{home_folder}}/.kube/config"
+  when: file_stat_admin_config.stat.exists == False
+  
 - name: Change the ownership of the .kube folder 
   ansible.builtin.shell: chown $(id -u):$(id -g) "{{home_folder}}/.kube/config"
   when: file_stat_admin_config.stat.exists == False
 
-- name: Copy the admin.config file to .kube folder
-  ansible.builtin.shell: /etc/kubernetes/admin.conf "{{home_folder}}/.kube/config"
-  when: file_stat_admin_config.stat.exists == False
