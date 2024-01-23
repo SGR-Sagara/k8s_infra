@@ -10,4 +10,4 @@
       token_id : "nor3vh.dej1l4wok0mwnxc0"
       cert_hash : "sha256:ac4233e73d9317997882ceb1ab1ce756aa2063de9f011b62070ff0a7c8e1a6b7"
   roles:
-    - k8s-woker
+    - k8s-worker
