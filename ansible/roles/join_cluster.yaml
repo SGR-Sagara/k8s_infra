@@ -1,0 +1,12 @@
+---
+- name: Join the Kubernetes Cluster 
+  hosts: tag_Type_WORKER
+  become: yes
+  remote_user: ubuntu
+  vars:
+      master_host: "10.0.1.171"
+      api_port : "6443"
+      token_id : "s60mzj.cf4ou0uoro1ngp4g"
+      cert_hash : "sha256:f4a66053b4cf5d6b4661adab7f70ba82a48c0353c0b4a3abc198db129ca1a0e2"
+  roles:
+    - k8s-woker

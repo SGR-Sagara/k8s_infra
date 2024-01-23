@@ -1,7 +1,0 @@
----
-- name: Install kubectl
-  ansible.builtin.apt:
-    name:
-      - kubectl
-    update_cache: yes
-    state: present

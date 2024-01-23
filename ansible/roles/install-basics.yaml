@@ -1,7 +1,7 @@
 # code: language=yaml
 ---
 - name: Install and configure Kubernetes master
-  hosts: tag_Type_MASTER
+  hosts: aws_ec2
   become: yes
   remote_user: ubuntu
   vars:
