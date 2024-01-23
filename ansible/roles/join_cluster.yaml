@@ -4,9 +4,9 @@
   become: yes
   remote_user: ubuntu
   vars:
-      master_host: "10.0.1.171"
+      master_host: "10.0.2.138"
       api_port : "6443"
-      token_id : "s60mzj.cf4ou0uoro1ngp4g"
-      cert_hash : "sha256:f4a66053b4cf5d6b4661adab7f70ba82a48c0353c0b4a3abc198db129ca1a0e2"
+      token_id : "ylp7ww.0xy31uhsq52lzo2v"
+      cert_hash : "sha256:2efb285ffb933cba5e2cf26d4ad457eb385e8b2cb5fcac6437205650d83dd977"
   roles:
     - k8s-woker
