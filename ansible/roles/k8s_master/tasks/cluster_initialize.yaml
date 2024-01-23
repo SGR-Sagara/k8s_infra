@@ -1,24 +1,23 @@
 ---
-- name: Check whether server is a MAster and If master set the environemnt variable "K8S_MASTER" = "true" 
-  ansible.builtin.script: ../files/check_if_master.sh
+- name: Check whether server is a MAster and If not the master initialize the cluster
+  ansible.builtin.script: ../files/check_if_master.sh {{ cluster_pod_cidr }} {{ api_server_ip }}
   args:
     executable : /bin/bash
   register: master_check
 
 - name: Master Check status log 
   ansible.builtin.debug:
-    verbosity: 2
-    var: master_check
+    var: master_check.stdout
 
-- name: Initialize the Kubernetes cluster with provided variables
-  ansible.builtin.script: ../files/cluster.sh {{ cluster_pod_cidr }} {{ api_server_ip }}
-  args:
-    executable : /bin/bash
-  register: initialize_result
+# - name: Initialize the Kubernetes cluster with provided variables
+#   ansible.builtin.script: ../files/cluster.sh {{ cluster_pod_cidr }} {{ api_server_ip }}
+#   args:
+#     executable : /bin/bash
+#   register: initialize_result
 
-- name: Show the std putput 
-  debug:
-    var: initialize_result.stdout
+# - name: Show the std putput 
+#   debug:
+#     var: initialize_result.stdout
 
 - name: Create .kube folder 
   ansible.builtin.file:
