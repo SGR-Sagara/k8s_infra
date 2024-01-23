@@ -18,7 +18,13 @@
     backup: yes
 - name: Run few commands for IPv4 and letting iptables see bridged traffic
   ansible.builtin.shell: sudo modprobe overlay ; sudo modprobe br_netfilter ; sudo sysctl --system
-  
+
+- name: Install the netstat utility
+  ansible.builtin.apt:
+    name: netstat
+    update_cache: yes
+    state: present
+
 # - name: Set "sysctl.d" settings with "net.ipv4.ip_forward"
 #   ansible.posix.sysctl:
 #     name: net.ipv4.ip_forward
