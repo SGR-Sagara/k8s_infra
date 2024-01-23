@@ -165,11 +165,11 @@ resource "aws_eip" "nat_public_ip" {
   vpc = true
 }
 
-# 1.9. Create a NatGateway and link a public subnet
+# 1.9. Create a NatGateway and link a private subnet
 resource "aws_nat_gateway" "gateway_for_private_sn" {
   allocation_id = aws_eip.nat_public_ip.id
-  subnet_id = element(aws_subnet.private_subnet.*.id, 0 )
-  depends_on = [aws_eip.nat_public_ip, aws_subnet.private_subnet]
+  subnet_id = element(aws_subnet.public_subnet.*.id, 0 )
+  depends_on = [aws_eip.nat_public_ip, aws_subnet.public_subnet]
   tags = {
     Name = "NAT-GW-PUBLIC-ACCESS"
   }
@@ -181,7 +181,8 @@ resource "aws_nat_gateway" "gateway_for_private_sn" {
 resource "aws_route" "link_nat_gateway" {
   route_table_id = aws_route_table.private_route.id
   destination_cidr_block = "0.0.0.0/0"
-  nat_gateway_id = aws_nat_gateway.gateway_for_private_sn.id
-  depends_on = [aws_eip.nat_public_ip,aws_route_table.private_route, aws_subnet.private_subnet]
+  #nat_gateway_id = aws_nat_gateway.gateway_for_private_sn.id
+  nat_gateway_id = element(aws_nat_gateway.gateway_for_private_sn.*.id, 0)
+  depends_on = [aws_eip.nat_public_ip,aws_route_table.private_route, aws_subnet.public_subnet]
 }
 
