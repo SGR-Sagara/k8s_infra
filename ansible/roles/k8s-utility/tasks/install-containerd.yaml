@@ -1,6 +1,6 @@
 ---
 - name: Update apt package cache
-  become_user: ubuntu
+  become: true
   ansible.builtin.apt:
     update_cache: yes
 
