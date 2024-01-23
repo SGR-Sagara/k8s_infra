@@ -16,27 +16,27 @@
     group: root
     mode: '0644'
     backup: yes
+- name: Run few commands for IPv4 and letting iptables see bridged traffic
+  ansible.builtin.shell: sudo modprobe overlay ; sudo modprobe br_netfilter ; sudo sysctl --system
+  
+# - name: Set "sysctl.d" settings with "net.ipv4.ip_forward"
+#   ansible.posix.sysctl:
+#     name: net.ipv4.ip_forward
+#     value: '1'
+#     state: present 
+#     reload: true
 
-- name: Set "sysctl.d" settings with "net.ipv4.ip_forward"
-  ansible.posix.sysctl:
-    name: net.ipv4.ip_forward
-    value: '1'
-    state: present 
-    reload: true
+# - name: Set "sysctl.d" settings with "net.bridge.bridge-nf-call-iptables"
+#   ansible.posix.sysctl:
+#     name: net.bridge.bridge-nf-call-iptables
+#     value: '1'
+#     state: present 
+#     reload: true
 
-- name: Set "sysctl.d" settings with "net.bridge.bridge-nf-call-iptables"
-  ansible.posix.sysctl:
-    name: net.bridge.bridge-nf-call-iptables
-    value: '1'
-    state: present 
-    reload: true
+# - name: Set "sysctl.d" settings with "net.bridge.bridge-nf-call-ip6tables"
+#   ansible.posix.sysctl:
+#     name: net.bridge.bridge-nf-call-ip6tables
+#     value: '1'
+#     state: present 
+#     reload: true
 
-- name: Set "sysctl.d" settings with "net.bridge.bridge-nf-call-ip6tables"
-  ansible.posix.sysctl:
-    name: net.bridge.bridge-nf-call-ip6tables
-    value: '1'
-    state: present 
-    reload: true
-
-# - name: Run few commands for IPv4 and letting iptables see bridged traffic
-#   ansible.builtin.shell: sudo modprobe overlay ; sudo modprobe br_netfilter ; sudo sysctl --system
