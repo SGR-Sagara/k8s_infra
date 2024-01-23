@@ -6,7 +6,7 @@
   remote_user: ubuntu
   tasks:
     - name: Download WeaveNet CNI plugin
-      ansible.builtin.shell: wget https://github.com/weaveworks/weave/releases/download/v2.8.1/weave-daemonset-k8s.yaml
+      ansible.builtin.shell: wget /tmp/weave-daemonset-k8s.yaml https://github.com/weaveworks/weave/releases/download/v2.8.1/weave-daemonset-k8s.yaml
 
     - name: Install WeaveNet CNI plugin
-      ansible.builtin.shell: kubectl apply -f weave-daemonset-k8s.yaml
+      ansible.builtin.shell: kubectl apply -f /tmp/weave-daemonset-k8s.yaml
