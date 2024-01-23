@@ -8,7 +8,7 @@
 - name: Master Check status log 
   ansible.builtin.debug:
     verbosity: 2
-    var: master_check.stdout
+    var: master_check
 
 - name: Initialize the Kubernetes cluster with provided variables
   ansible.builtin.script: ../files/cluster.sh {{ cluster_pod_cidr }} {{ api_server_ip }}
