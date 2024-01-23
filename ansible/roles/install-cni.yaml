@@ -1,7 +1,7 @@
 # code: language=yaml
 ---
 - name: Install CNI pulugin
-  hosts: MASTERS
+  hosts: tag_Type_MASTER
   become: yes
   remote_user: ubuntu
   tasks:

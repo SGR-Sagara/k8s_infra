@@ -85,6 +85,7 @@ resource "aws_instance" "k8s_master_node" {
     vpc_security_group_ids = ["${data.aws_security_groups.public_sg.ids[0]}"]
     #security_groups = [local.instance_sec_grp_id]
     key_name = var.ssh_key_name
+    
     user_data = "${file(var.user_data_file)}" 
     associate_public_ip_address = true
     iam_instance_profile = aws_iam_instance_profile.ec2_profile.name
