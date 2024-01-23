@@ -39,6 +39,7 @@
   when: file_stat_admin_config.stat.exists == False
 
 - name: Change the ownership of the .kube folder 
-  ansible.builtin.shell: chown $(id -u):$(id -g) "{{home_folder}}/.kube/config"
+  remote_user: ubuntu
+  ansible.builtin.shell: sudo chown $(id -u):$(id -g) "{{home_folder}}/.kube/config"
   when: file_stat_admin_config.stat.exists == False
 
