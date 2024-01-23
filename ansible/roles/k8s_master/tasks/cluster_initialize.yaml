@@ -8,3 +8,25 @@
 - name: Show the std putput 
   debug:
     var: initialize_result.stdout
+
+- name: Configure for regular users to access cluster
+  ansible.builtin.file:
+    path: $HOME/.kube
+    state: directory
+    owner: ubuntu
+    group: ubuntu
+    mode: '0755'
+
+- name: Check if the "admin.config" exists
+  stat:
+    path: $HOME/.kube/config
+  register: file_stat_admin_config
+  ignore_errors: true
+
+- name: Copy the admin.config file to .kube folder 
+  ansible.builtin.shell: /etc/kubernetes/admin.conf $HOME/.kube/config
+  when: file_stat_admin_config.stat.exists == False
+
+- name: Change the ownership of the .kube folder 
+  ansible.builtin.shell: chown $(id -u):$(id -g) $HOME/.kube/config
+  when: file_stat_admin_config.stat.exists == False
