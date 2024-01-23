@@ -30,14 +30,14 @@
 
 - name: Check if the "admin.config" exists
   stat:
-    path: $HOME/.kube/config
+    path: "{{home_folder}}/.kube/config"
   register: file_stat_admin_config
   ignore_errors: true
 
 - name: Change the ownership of the .kube folder 
-  ansible.builtin.shell: chown $(id -u):$(id -g) $HOME/.kube/config
+  ansible.builtin.shell: chown $(id -u):$(id -g) "{{home_folder}}/.kube/config"
   when: file_stat_admin_config.stat.exists == False
 
 - name: Copy the admin.config file to .kube folder
-  ansible.builtin.shell: /etc/kubernetes/admin.conf $HOME/.kube/config
+  ansible.builtin.shell: /etc/kubernetes/admin.conf "{{home_folder}}/.kube/config"
   when: file_stat_admin_config.stat.exists == False
