@@ -1,4 +1,4 @@
 ## Add worker nodes to kubernetes master 
 #!/bin/bash
 
-kubeadm join {{master_host}}:{{api_port}} --token {{token_id}} --discovery-token-ca-cert-hash {{cert_hash}
+kubeadm join $1:$2 --token $3 --discovery-token-ca-cert-hash $4
