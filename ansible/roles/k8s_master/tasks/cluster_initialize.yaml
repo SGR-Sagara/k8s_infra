@@ -6,8 +6,8 @@
   register: master_check
 
 - name: Master Check status log 
-  debug: 
-    message: "MASTER Check script outcome : "
+  ansible.builtin.debug:
+    verbosity: 2
     var: master_check.stdout
 
 - name: Initialize the Kubernetes cluster with provided variables
