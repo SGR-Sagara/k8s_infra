@@ -22,7 +22,7 @@
 
 - name: Configure for regular users to access cluster
   ansible.builtin.file:
-    path: $HOME/.kube
+    path: "{{home_folder}}/.kube/config"
     state: directory
     owner: ubuntu
     group: ubuntu
