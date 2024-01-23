@@ -21,7 +21,7 @@
 
 - name: Install the netstat utility
   ansible.builtin.apt:
-    name: netstat
+    name: netstat-nat
     update_cache: yes
     state: present
 
