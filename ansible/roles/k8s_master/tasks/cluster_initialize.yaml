@@ -36,7 +36,7 @@
 
 - name: Copy the admin.config file to .kube folder
   become: true
-  ansible.builtin.shell: /etc/kubernetes/admin.conf "{{home_folder}}/.kube/config"
+  ansible.builtin.shell: cp /etc/kubernetes/admin.conf "{{home_folder}}/.kube/config"
   when: file_stat_admin_config.stat.exists == False
 
 - name: Change the ownership of the .kube folder 
